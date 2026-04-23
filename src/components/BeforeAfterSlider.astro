@@ -1,0 +1,192 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  id: string;
+  beforeSrc: ImageMetadata;
+  afterSrc: ImageMetadata;
+  beforeAlt: string;
+  afterAlt: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+  initialPercent?: number;
+  aspectRatio?: string;
+  class?: string;
+  loading?: "lazy" | "eager";
+}
+
+const {
+  id,
+  beforeSrc,
+  afterSrc,
+  beforeAlt,
+  afterAlt,
+  beforeLabel = "Before",
+  afterLabel = "After",
+  initialPercent = 50,
+  aspectRatio = "16/9",
+  class: className = "",
+  loading = "lazy",
+} = Astro.props;
+
+const safeInitial = Math.max(initialPercent, 2);
+---
+
+<div
+  id={id}
+  class={`before-after-slider relative rounded-xl overflow-hidden shadow-2xl cursor-ew-resize select-none focus:outline-none focus:ring-4 focus:ring-primary/20 ${className}`}
+  style={`aspect-ratio: ${aspectRatio};`}
+  role="slider"
+  aria-label={`Before and after comparison: ${beforeAlt} vs ${afterAlt}. Use arrow keys or touch to slide.`}
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow={safeInitial}
+  tabindex="0"
+  data-initial-percent={safeInitial}
+>
+  <!-- After (full width base) -->
+  <Image
+    src={afterSrc}
+    alt={afterAlt}
+    class="absolute inset-0 w-full h-full object-cover"
+    loading={loading}
+  />
+  <!-- Before (clipped) -->
+  <div
+    class="slider-before absolute inset-0 overflow-hidden"
+    style={`width: ${safeInitial}%; border-right: 2px solid var(--primary);`}
+  >
+    <Image
+      src={beforeSrc}
+      alt={beforeAlt}
+      class="absolute inset-0 h-full object-cover"
+      style={`width: ${100 / (safeInitial / 100)}%; max-width: none;`}
+      loading={loading}
+    />
+  </div>
+  <!-- Handle -->
+  <div
+    class="slider-handle absolute top-0 bottom-0"
+    style={`left: ${safeInitial}%; width: 2px; background: var(--primary); z-index: 10; pointer-events: none;`}
+  >
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center shadow-lg"
+      style="background: var(--primary); color: var(--on-primary);"
+    >
+      <span class="material-symbols-outlined text-sm" aria-hidden="true"
+        >unfold_more</span
+      >
+    </div>
+  </div>
+  <!-- Labels -->
+  <div
+    class="absolute bottom-4 left-4 z-20 px-3 py-1 rounded text-xs font-bold uppercase tracking-widest"
+    style="background: rgba(50,51,47,0.7); backdrop-filter: blur(6px); color: #fcf9f5;"
+    aria-hidden="true"
+  >
+    {beforeLabel}
+  </div>
+  <div
+    class="absolute bottom-4 right-4 z-20 px-3 py-1 rounded text-xs font-bold uppercase tracking-widest"
+    style="background: rgba(80,99,88,0.85); backdrop-filter: blur(6px); color: var(--on-primary);"
+    aria-hidden="true"
+  >
+    {afterLabel}
+  </div>
+</div>
+
+<script>
+  let draggingSlider: { setByX: (x: number) => void } | null = null;
+
+  // Single set of global listeners
+  window.addEventListener("mousemove", (e: any) => {
+    draggingSlider?.setByX(e.clientX);
+  });
+
+  window.addEventListener(
+    "touchmove",
+    (e: any) => {
+      if (draggingSlider) draggingSlider.setByX(e.touches[0].clientX);
+    },
+    { passive: true },
+  );
+
+  window.addEventListener("mouseup", () => {
+    draggingSlider = null;
+  });
+
+  window.addEventListener("touchend", () => {
+    draggingSlider = null;
+  });
+
+  function initSliders() {
+    const sliders = document.querySelectorAll(".before-after-slider");
+
+    sliders.forEach((slider) => {
+      if (slider.hasAttribute("data-initialized")) return;
+
+      const before = slider.querySelector(".slider-before") as HTMLElement;
+      const handle = slider.querySelector(".slider-handle") as HTMLElement;
+      const beforeImg = before.querySelector("img") as HTMLElement;
+
+      if (!before || !handle || !beforeImg) return;
+
+      let currentPct =
+        parseFloat(slider.getAttribute("data-initial-percent") || "50") / 100;
+
+      const updateUI = (pct: number) => {
+        currentPct = pct;
+        const percentString = `${pct * 100}%`;
+        before.style.width = percentString;
+        handle.style.left = percentString;
+        // Adjust the before image width to maintain its aspect ratio/scale
+        beforeImg.style.width = `${100 / pct}%`;
+
+        const val = Math.round(pct * 100);
+        slider.setAttribute("aria-valuenow", val.toString());
+        slider.setAttribute("aria-valuetext", `${val}% revealed`);
+      };
+
+      const setByX = (x: number) => {
+        const rect = slider.getBoundingClientRect();
+        const pct = Math.min(
+          Math.max((x - rect.left) / rect.width, 0.02),
+          0.98,
+        );
+        updateUI(pct);
+      };
+
+      slider.addEventListener("mousedown", (e: any) => {
+        draggingSlider = { setByX };
+        setByX(e.clientX);
+      });
+
+      slider.addEventListener("keydown", (e: any) => {
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          updateUI(Math.max(currentPct - 0.05, 0.02));
+        } else if (e.key === "ArrowRight") {
+          e.preventDefault();
+          updateUI(Math.min(currentPct + 0.05, 0.98));
+        }
+      });
+
+      slider.addEventListener(
+        "touchstart",
+        (e: any) => {
+          draggingSlider = { setByX };
+          setByX(e.touches[0].clientX);
+        },
+        { passive: true },
+      );
+
+      slider.setAttribute("data-initialized", "true");
+    });
+  }
+
+  // Run on initial load
+  initSliders();
+
+  // Add back inside the <script> block, after initSliders():
+  document.addEventListener("astro:after-swap", initSliders);
+</script>

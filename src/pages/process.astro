@@ -1,0 +1,289 @@
+---
+import { Image } from "astro:assets";
+import marbleAfter from "../assets/marble_after_image.png";
+import marbleBefore from "../assets/marble_before_image.png";
+import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.astro";
+import Layout from "../layouts/Layout.astro";
+
+const plans = [
+  {
+    id: "basic",
+    name: "Basic Care",
+    price: "45",
+    unit: "/service",
+    description: "Gentle maintenance to restore surfaces.",
+    features: [
+      "Soft dry-removal of debris and surface dirt",
+      "pH-neutral cleaning solution application",
+      "Surrounding ground maintenance",
+      'High-resolution "before & after" photo report',
+    ],
+    cta: "Select Basic",
+    featured: false,
+  },
+  {
+    id: "restorative",
+    name: "Restorative Care",
+    price: "75",
+    unit: "/service",
+    description: "Our most comprehensive single-service treatment.",
+    features: [
+      "Everything in Basic Care",
+      "Deep biological cleaning (lichen & moss removal)",
+      "Careful polishing of porous or granular surfaces",
+      "Enzyme treatment for future growth prevention",
+      "In-depth masonry condition assessment",
+    ],
+    cta: "Choose Restorative",
+    featured: true,
+    badge: "Recommended",
+  },
+  {
+    id: "legacy",
+    name: "Peace of Mind Plan",
+    price: "125",
+    unit: "/annual",
+    description: "Ongoing annual stewardship. Never let them be forgotten again.",
+    features: [
+      "Quarterly maintenance visits",
+      "Premium floral placement",
+      "Headstone sealing & protective waxing",
+      "Anniversary or holiday visit scheduling",
+    ],
+    cta: "Inquire for Stewardship",
+    featured: false,
+  },
+];
+---
+
+<Layout
+  title="Our Services | The Quiet Guardian"
+  description="Dignified preservation packages for every need — from single-service restorations to annual stewardship plans."
+>
+  <Nav />
+
+  <main id="main-content">
+    <!-- ── Hero ───────────────────────────────────────────────── -->
+    <section class="max-w-screen-2xl mx-auto px-8 md:px-12 pt-40 pb-16" aria-labelledby="process-hero-title">
+      <p
+        class="reveal text-xs font-bold uppercase tracking-widest mb-5"
+        style="color: var(--primary);"
+        data-delay="0"
+      >
+        Care Packages
+      </p>
+      <h1
+        id="process-hero-title"
+        class="reveal text-5xl md:text-7xl leading-tight max-w-3xl mb-8"
+        style="font-family: var(--font-headline); color: var(--on-surface);"
+        data-delay="80"
+      >
+        Dignified preservation for your<br />
+        <em class="font-light" style="color: var(--primary);"
+          >lasting legacies.</em
+        >
+      </h1>
+      <p
+        class="reveal text-lg leading-relaxed max-w-2xl"
+        style="color: var(--on-surface-variant);"
+        data-delay="160"
+      >
+        We provide gentle, specialised care across Leinster to ensure that your family's history
+        remains clear and respected through the passing seasons.
+      </p>
+    </section>
+
+    <!-- ── Pricing Cards ──────────────────────────────────────── -->
+    <section
+      class="max-w-screen-2xl mx-auto px-8 md:px-12 mb-32"
+      aria-labelledby="pricing-heading"
+    >
+      <h2 id="pricing-heading" class="sr-only">Service packages and pricing</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        {
+          plans.map((plan, i) => (
+            <article
+              class={`reveal relative rounded-xl p-10 flex flex-col ${plan.featured ? "md:-translate-y-4 shadow-2xl" : "shadow-md"}`}
+              style={
+                plan.featured
+                  ? "background: var(--surface-container-lowest); border: 1.5px solid var(--primary);"
+                  : "background: var(--surface-container-lowest);"
+              }
+              data-delay={i * 100}
+              aria-label={`${plan.name} — €${plan.price}${plan.unit}`}
+            >
+              {plan.badge && (
+                <div
+                  class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest"
+                  style="background: var(--primary); color: var(--on-primary);"
+                  aria-label="Recommended plan"
+                >
+                  {plan.badge}
+                </div>
+              )}
+              <h3
+                class="text-xl mb-1"
+                style="font-family: var(--font-headline); color: var(--on-surface);"
+              >
+                {plan.name}
+              </h3>
+              <p class="text-sm mb-6" style="color: var(--on-surface-variant);">
+                {plan.description}
+              </p>
+              <div class="flex items-baseline gap-1 mb-8">
+                <span
+                  class="text-4xl font-light"
+                  style="font-family: var(--font-headline); color: var(--on-surface);"
+                >
+                  €{plan.price}
+                </span>
+                <span class="text-sm" style="color: var(--on-surface-variant);">
+                  {plan.unit}
+                </span>
+              </div>
+              <ul class="space-y-3 mb-10 flex-1" role="list">
+                {plan.features.map((f) => (
+                  <li
+                    class="flex items-start gap-3 text-sm leading-relaxed"
+                    style={`color: ${plan.featured ? "var(--on-surface)" : "var(--on-surface-variant)"};`}
+                  >
+                    <span
+                      class="material-symbols-outlined text-base shrink-0 mt-0.5"
+                      style="color: var(--primary);"
+                      aria-hidden="true"
+                    >
+                      check
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="/request-care"
+                class={
+                  plan.featured
+                    ? "btn-primary text-center justify-center"
+                    : "btn-secondary text-center justify-center"
+                }
+                style="justify-content: center;"
+              >
+                {plan.cta}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ── Restoration with Respect ───────────────────────────── -->
+    <section
+      class="py-32 px-8 md:px-12 max-w-screen-2xl mx-auto"
+      aria-labelledby="respect-heading"
+    >
+      <div class="grid md:grid-cols-2 gap-20 items-center">
+        <!-- Text -->
+        <div>
+          <h2
+            id="respect-heading"
+            class="reveal text-4xl md:text-5xl mb-8 leading-tight"
+            style="font-family: var(--font-headline); color: var(--on-surface);"
+            data-delay="0"
+          >
+            Restoration with<br />
+            <em class="font-light" style="color: var(--primary);"
+              >Unwavering Respect</em
+            >
+          </h2>
+          <p
+            class="reveal leading-relaxed mb-10"
+            style="color: var(--on-surface-variant);"
+            data-delay="80"
+          >
+            Observe the transformation of a century-old marble marker after our
+            Restorative Care service. We use only biological, safe solutions
+            that preserve the integrity of the stone for generations to come.
+          </p>
+          <div class="reveal space-y-4" data-delay="140">
+            {
+              [
+                { icon: "eco", label: "100% Bio-Friendly" },
+                { icon: "handyman", label: "Master Craftsman Techniques" },
+              ].map(({ icon, label }) => (
+                <div
+                  class="flex items-center gap-3 text-sm font-semibold uppercase tracking-widest"
+                  style="color: var(--on-surface-variant);"
+                >
+                  <span
+                    class="material-symbols-outlined text-base"
+                    style="color: var(--primary);"
+                    aria-hidden="true"
+                  >
+                    {icon}
+                  </span>
+                  {label}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Before/After slider -->
+        <div class="reveal" data-delay="100">
+          <BeforeAfterSlider
+            id="services-slider"
+            beforeSrc={marbleBefore}
+            afterSrc={marbleAfter}
+            beforeAlt="Headstone before restorative care — covered in lichen"
+            afterAlt="Headstone after restorative care — clean and bright"
+            aspectRatio="4/3"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Philosophy blockquote ─────────────────────────────── -->
+    <section
+      class="py-24 px-8 md:px-12"
+      style="background: var(--surface-container-low);"
+      aria-label="Our philosophy"
+    >
+      <div class="max-w-3xl mx-auto text-center">
+        <p
+          class="reveal text-xs font-bold uppercase tracking-widest mb-10"
+          style="color: var(--primary);"
+          data-delay="0"
+        >
+          Preserving the Unspoken
+        </p>
+        <div
+          class="reveal rounded-xl p-10"
+          style="background: var(--surface-container); border: none;"
+          data-delay="80"
+        >
+          <div
+            class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-6"
+            style="background: var(--secondary-container);"
+            aria-hidden="true"
+          >
+            <span
+              class="material-symbols-outlined"
+              style="color: var(--on-secondary-container);">spa</span
+            >
+          </div>
+          <p
+            class="text-lg leading-relaxed italic"
+            style="font-family: var(--font-headline); color: var(--on-surface-variant);"
+          >
+            Every stone tells a story. Our team uses pH-neutral, biological
+            cleaners approved for historic monuments to ensure the integrity of
+            the stone remains untouched for generations.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,82 @@
+---
+import { CONTACT_INFO } from "../config";
+const { whatsappNumber, phoneNumber } = CONTACT_INFO;
+---
+<footer style="background: var(--surface-container-low); border-top: 1px solid rgba(179,178,172,0.15);" role="contentinfo">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 md:px-12 py-20 max-w-screen-2xl mx-auto">
+
+    <!-- Brand -->
+    <div class="md:col-span-1">
+      <p class="text-lg mb-5" style="font-family: var(--font-headline); font-style: italic; color: var(--on-surface);">The Quiet Guardian</p>
+      <p class="text-sm leading-relaxed" style="color: var(--on-surface-variant);">
+        Providing high-end digital preservation and physical restoration services for memorial sites.
+      </p>
+    </div>
+
+    <!-- Navigation -->
+    <div>
+      <h3 class="text-xs font-bold uppercase tracking-widest mb-6" style="color: var(--primary);">Navigation</h3>
+      <ul class="space-y-4" role="list">
+        {[
+          { href: '/',             label: 'Home' },
+          { href: '/process',      label: 'Our Services' },
+          { href: '/portfolio',    label: 'Portfolio' },
+          { href: '/request-care', label: 'Request Care' },
+        ].map(({ href, label }) => (
+          <li>
+            <a href={href} class="footer-link text-xs uppercase tracking-widest" style="color: var(--on-surface-variant);">{label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Resources -->
+    <div>
+      <h3 class="text-xs font-bold uppercase tracking-widest mb-6" style="color: var(--primary);">Resources</h3>
+      <ul class="space-y-4" role="list">
+        <li><a href="/privacy" class="footer-link text-xs uppercase tracking-widest" style="color: var(--on-surface-variant);">Privacy Policy</a></li>
+        <li><span class="text-[10px] italic opacity-50 uppercase tracking-widest" style="color: var(--on-surface-variant);">More resources coming soon</span></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <h3 class="text-xs font-bold uppercase tracking-widest mb-6" style="color: var(--primary);">Contact</h3>
+      <div class="space-y-3 pt-2">
+        <a href={`tel:${phoneNumber}`} class="flex items-center gap-2 text-sm font-semibold" style="color: var(--primary);">
+          <span class="material-symbols-outlined text-base">call</span>
+          {phoneNumber}
+        </a>
+        <a href="mailto:care@quietguardian.com" class="flex items-center gap-2 text-sm font-semibold" style="color: var(--primary);">
+          <span class="material-symbols-outlined text-base">mail</span>
+          care@quietguardian.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="px-8 md:px-12 py-6 max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4" style="border-top: 1px solid rgba(179,178,172,0.1);">
+    <p class="text-xs uppercase tracking-widest italic" style="color: var(--on-surface-variant);">
+      © {new Date().getFullYear()} The Quiet Guardian. Digital preservation with dignity.
+    </p>
+    <div class="flex gap-4">
+      <a href="/portfolio" class="hover:opacity-70 transition-opacity" aria-label="View our gallery">
+        <span class="material-symbols-outlined text-base" style="color: var(--outline)">camera</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-link {
+    text-decoration: underline;
+    text-decoration-color: rgba(179,178,172,0.4);
+    text-underline-offset: 6px;
+    transition: color 0.3s ease, text-decoration-color 0.3s ease;
+  }
+  .footer-link:hover {
+    color: var(--primary) !important;
+    text-decoration-color: var(--primary);
+  }
+</style>

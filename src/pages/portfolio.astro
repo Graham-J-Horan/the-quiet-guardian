@@ -1,0 +1,533 @@
+---
+import { Image } from "astro:assets";
+import granitePortfolio from "../assets/granite_image_portfolio.png";
+import limestonePortfolio from "../assets/limestone_portfolio_image.png";
+import marbleAfter from "../assets/marble_after_image.png";
+import marbleBefore from "../assets/marble_before_image.png";
+import marblePortfolio from "../assets/marble_image_portfolio.png";
+import peacefulCemetery from "../assets/peaceful_cemetery.png";
+import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.astro";
+import Layout from "../layouts/Layout.astro";
+
+const cases = [
+  {
+    id: "case-142",
+    label: "Restoration Case #142",
+    title: "The Sterling Family Marble, c.1894",
+    description:
+      "Biological growth and atmospheric pollutants removed using non-invasive pH-neutral poultices, revealing the original Carrara white luster.",
+    date: "Restored May 2023",
+    material: "marble",
+    size: "lg",
+    img: marblePortfolio,
+    alt: "Close-up of a weathered white marble headstone being cleaned with specialised soft brushes",
+  },
+  {
+    id: "case-st-jude",
+    label: "Granite Preservation",
+    title: "St. Jude's Memorial",
+    description:
+      "Resurfacing of weathered grey granite and gold-leaf re-gilding of historical lettering.",
+    date: "Restored Aug 2023",
+    material: "granite",
+    size: "sm",
+    img: granitePortfolio,
+    alt: "Polished dark granite headstone reflecting the soft afternoon sun after deep cleaning",
+  },
+  {
+    id: "case-elder",
+    label: "Limestone Stabilising",
+    title: "Elder Ridge Cross",
+    description:
+      "Stabilising friable limestone and removing deep-rooted lichen colonies.",
+    date: "Restored Jan 2024",
+    material: "limestone",
+    size: "sm",
+    img: limestonePortfolio,
+    alt: "Soft limestone cross headstone — before and pristine cream colour after delicate biological cleaning",
+  },
+  {
+    id: "case-angel",
+    label: "Statuary Conservation",
+    title: "Angel of Memory, South Garden",
+    description:
+      "Comprehensive micro-abrasive cleaning and structural pinning for a late 19th-century memorial sculpture.",
+    date: "Restored Nov 2023",
+    material: "marble",
+    size: "wide",
+    img: peacefulCemetery,
+    alt: "Wide shot of a peaceful cemetery garden featuring a restored marble angel statue with soft morning mist",
+  },
+];
+---
+
+<Layout
+  title="Portfolio | The Quiet Guardian"
+  description="Our restoration gallery showcases the meticulous care and specialised techniques used to honour memories etched in marble, granite, and limestone."
+  preloadImage={cases[0].img.src}
+>
+  <Nav />
+
+  <main id="main-content">
+    <!-- ── Hero ───────────────────────────────────────────────── -->
+    <section class="max-w-screen-2xl mx-auto px-8 md:px-12 pt-40 pb-20" aria-labelledby="portfolio-hero-title">
+      <div class="max-w-3xl">
+        <p
+          class="reveal text-xs font-bold uppercase tracking-widest mb-6"
+          style="color: var(--primary);"
+          data-delay="0"
+        >
+          Our Work
+        </p>
+        <h1
+          id="portfolio-hero-title"
+          class="reveal text-5xl md:text-7xl leading-tight mb-8"
+          style="font-family: var(--font-headline); color: var(--on-surface);"
+          data-delay="80"
+        >
+          The Art of<br />
+          <em class="font-light" style="color: var(--primary);"
+            >Digital Preservation</em
+          >
+        </h1>
+        <p class="reveal text-lg leading-relaxed max-w-xl" style="color: var(--on-surface-variant);" data-delay="160">
+          Every stone tells a story. Our gallery showcases restorations across Leinster, highlighting the specialised techniques used to honour the memories etched in stone.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Filter Tabs ────────────────────────────────────────── -->
+    <section
+      class="max-w-screen-2xl mx-auto px-8 md:px-12 mb-16"
+      aria-label="Filter portfolio by material"
+    >
+      <div class="flex flex-wrap gap-6 items-center">
+        <span
+          class="text-xs font-bold uppercase tracking-widest"
+          style="color: var(--outline);">Filter by Material</span
+        >
+        <div
+          class="flex flex-wrap gap-3"
+          role="group"
+          aria-label="Material filter buttons"
+        >
+          {
+            ["All Works", "Marble", "Granite", "Limestone"].map((label, i) => (
+              <button
+                class={`filter-btn px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${i === 0 ? "filter-active" : ""}`}
+                data-filter={i === 0 ? "all" : label.toLowerCase()}
+                aria-pressed={i === 0 ? "true" : "false"}
+              >
+                {label}
+              </button>
+            ))
+          }
+        </div>
+        <!-- Visually hidden status for screen readers -->
+        <div id="filter-status" class="sr-only" aria-live="polite">
+          Showing all works.
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Portfolio Grid ─────────────────────────────────────── -->
+    <section
+      class="max-w-screen-2xl mx-auto px-8 md:px-12 mb-32"
+      aria-label="Portfolio of restoration cases"
+    >
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <!-- Large — Sterling Marble -->
+        <article
+          class="reveal md:col-span-8 portfolio-item"
+          data-material="marble"
+          data-delay="0"
+        >
+          <div
+            class="relative rounded-xl overflow-hidden mb-6"
+            style="aspect-ratio: 16/9;"
+          >
+            <Image
+              src={cases[0].img}
+              alt={cases[0].alt}
+              class="w-full h-full object-cover"
+              loading="eager"
+            />
+          </div>
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <p
+                class="text-xs font-bold uppercase tracking-widest mb-2"
+                style="color: var(--primary);"
+              >
+                {cases[0].label}
+              </p>
+              <h2
+                class="text-3xl mb-3"
+                style="font-family: var(--font-headline); color: var(--on-surface);"
+              >
+                {cases[0].title}
+              </h2>
+              <p
+                class="leading-relaxed max-w-lg"
+                style="color: var(--on-surface-variant);"
+              >
+                {cases[0].description}
+              </p>
+            </div>
+            <p
+              class="text-sm italic shrink-0"
+              style="font-family: var(--font-headline); color: var(--outline-variant);"
+            >
+              {cases[0].date}
+            </p>
+          </div>
+        </article>
+
+        <!-- Small — St. Jude's -->
+        <article
+          class="reveal md:col-span-4 portfolio-item"
+          data-material="granite"
+          data-delay="100"
+        >
+          <div
+            class="relative rounded-xl overflow-hidden mb-6"
+            style="aspect-ratio: 4/5;"
+          >
+            <Image
+              src={cases[1].img}
+              alt={cases[1].alt}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <p
+            class="text-xs font-bold uppercase tracking-widest mb-2"
+            style="color: var(--primary);"
+          >
+            {cases[1].label}
+          </p>
+          <h2
+            class="text-2xl mb-3"
+            style="font-family: var(--font-headline); color: var(--on-surface);"
+          >
+            {cases[1].title}
+          </h2>
+          <p
+            class="text-sm leading-relaxed"
+            style="color: var(--on-surface-variant);"
+          >
+            {cases[1].description}
+          </p>
+        </article>
+
+        <!-- Small — Elder Ridge -->
+        <article
+          class="reveal md:col-span-4 portfolio-item"
+          data-material="limestone"
+          data-delay="100"
+        >
+          <div
+            class="relative rounded-xl overflow-hidden mb-6"
+            style="aspect-ratio: 1/1;"
+          >
+            <Image
+              src={cases[2].img}
+              alt={cases[2].alt}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <p
+            class="text-xs font-bold uppercase tracking-widest mb-2"
+            style="color: var(--primary);"
+          >
+            {cases[2].label}
+          </p>
+          <h2
+            class="text-2xl mb-3"
+            style="font-family: var(--font-headline); color: var(--on-surface);"
+          >
+            {cases[2].title}
+          </h2>
+          <p
+            class="text-sm leading-relaxed"
+            style="color: var(--on-surface-variant);"
+          >
+            {cases[2].description}
+          </p>
+        </article>
+
+        <!-- Wide — Angel -->
+        <article
+          class="reveal md:col-span-8 portfolio-item"
+          data-material="marble"
+          data-delay="200"
+        >
+          <div
+            class="relative rounded-xl overflow-hidden mb-6"
+            style="aspect-ratio: 21/9;"
+          >
+            <Image
+              src={cases[3].img}
+              alt={cases[3].alt}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <p
+                class="text-xs font-bold uppercase tracking-widest mb-2"
+                style="color: var(--primary);"
+              >
+                {cases[3].label}
+              </p>
+              <h2
+                class="text-3xl mb-3"
+                style="font-family: var(--font-headline); color: var(--on-surface);"
+              >
+                {cases[3].title}
+              </h2>
+              <p
+                class="leading-relaxed max-w-xl"
+                style="color: var(--on-surface-variant);"
+              >
+                {cases[3].description}
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── Precision of Care ──────────────────────────────────── -->
+    <section
+      class="py-32 overflow-hidden"
+      style="background: var(--surface-container-low);"
+      aria-labelledby="precision-heading"
+    >
+      <div class="max-w-screen-2xl mx-auto px-8 md:px-12">
+        <div class="grid md:grid-cols-2 gap-20 items-center">
+          <!-- Text -->
+          <div>
+            <h2
+              id="precision-heading"
+              class="reveal text-4xl md:text-5xl mb-12 leading-tight"
+              style="font-family: var(--font-headline); color: var(--on-surface);"
+              data-delay="0"
+            >
+              The Precision of<br /><em class="font-light">Modern Care</em>
+            </h2>
+            <ol class="space-y-8" aria-label="Three-step restoration process">
+              {
+                [
+                  {
+                    n: "01",
+                    title: "Assessment",
+                    desc: "Detailed analysis of material composition and degradation causes before any touch.",
+                  },
+                  {
+                    n: "02",
+                    title: "Non-Invasive Methods",
+                    desc: "Exclusive use of biological cleaners and soft-bristle agitation to preserve stone integrity.",
+                  },
+                  {
+                    n: "03",
+                    title: "Digital Logging",
+                    desc: "Every step is documented, providing a digital provenance for the memorial's care.",
+                  },
+                ].map(({ n, title, desc }, i) => (
+                  <li class="reveal flex gap-6 items-start" data-delay={i * 80}>
+                    <span
+                      class="reveal shrink-0 w-12 h-12 rounded-full flex items-center justify-center italic"
+                      style={`border: 1px solid rgba(80,99,88,0.25); font-family: var(--font-headline); color: var(--primary); font-size: 1rem;`}
+                      aria-label={`Step ${n}`}
+                    >
+                      {n}
+                    </span>
+                    <div>
+                      <h3
+                        class="font-bold text-xs uppercase tracking-widest mb-2"
+                        style="color: var(--on-surface);"
+                      >
+                        {title}
+                      </h3>
+                      <p
+                        class="leading-relaxed"
+                        style="color: var(--on-surface-variant);"
+                      >
+                        {desc}
+                      </p>
+                    </div>
+                  </li>
+                ))
+              }
+            </ol>
+            <div class="mt-12 reveal" data-delay="300">
+              <a href="/request-care" class="btn-primary"
+                >Request a Site Evaluation</a
+              >
+            </div>
+          </div>
+
+          <!-- Before/After portrait -->
+          <div class="reveal relative" data-delay="100">
+            <BeforeAfterSlider
+              id="portfolio-slider"
+              beforeSrc={marbleBefore}
+              afterSrc={marbleAfter}
+              beforeAlt="Severely weathered and lichen-covered marble headstone before restoration"
+              afterAlt="Pristine white marble headstone with clear sharp lettering after restoration"
+              beforeLabel="Historical State"
+              afterLabel="Restored State"
+              aspectRatio="3/4"
+              initialPercent={55}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Testimonial ────────────────────────────────────────── -->
+    <section
+      class="py-32 max-w-screen-2xl mx-auto px-8 md:px-12 text-center"
+      aria-label="Featured testimonial"
+    >
+      <span
+        class="material-symbols-outlined text-4xl mb-8 block"
+        style="color: var(--primary-dim); font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;"
+        aria-hidden="true">format_quote</span
+      >
+      <figure>
+        <blockquote>
+          <p
+            class="reveal text-3xl md:text-4xl italic leading-relaxed max-w-4xl mx-auto mb-10"
+            style="font-family: var(--font-headline); color: var(--on-surface);"
+            data-delay="0"
+          >
+            "Seeing the name of my great-grandfather emerge clearly from decades
+            of soot and neglect was an incredibly moving experience. They didn't
+            just clean a stone; they restored a connection."
+          </p>
+        </blockquote>
+        <figcaption class="reveal flex items-center justify-center gap-4" data-delay="120">
+          <div
+            class="w-12 h-12 rounded-full flex items-center justify-center font-serif text-sm font-bold shadow-sm"
+            style="background: var(--primary-container); color: var(--on-primary-container);"
+            aria-hidden="true"
+          >
+            PW
+          </div>
+          <div class="text-left">
+            <p
+              class="font-bold text-sm uppercase tracking-widest"
+              style="color: var(--on-surface);"
+            >
+              PJ Walsh
+            </p>
+            <p class="text-xs italic" style="color: var(--on-surface-variant);">
+              Family Heritage Project, 2024
+            </p>
+          </div>
+        </figcaption>
+      </figure>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .filter-btn {
+    background: var(--surface-container-low);
+    color: var(--on-surface);
+    border: none;
+    cursor: pointer;
+  }
+  .filter-btn:hover {
+    background: var(--surface-container);
+  }
+  .filter-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+  .filter-btn.filter-active {
+    background: var(--primary);
+    color: var(--on-primary);
+  }
+  .portfolio-item.hidden-item {
+    display: none;
+  }
+</style>
+
+<script>
+  // Filter logic
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const portfolioItems = document.querySelectorAll(".portfolio-item");
+  const statusEl = document.getElementById("filter-status");
+
+  function applyFilter(filter: string, updateUrl = true) {
+    let count = 0;
+    const total = portfolioItems.length;
+
+    // Update buttons
+    filterBtns.forEach((btn) => {
+      const btnFilter = (btn as HTMLElement).dataset.filter ?? "all";
+      if (btnFilter === filter) {
+        btn.classList.add("filter-active");
+        btn.setAttribute("aria-pressed", "true");
+      } else {
+        btn.classList.remove("filter-active");
+        btn.setAttribute("aria-pressed", "false");
+      }
+    });
+
+    // Update items
+    portfolioItems.forEach((item) => {
+      const el = item as HTMLElement;
+      if (filter === "all" || el.dataset.material === filter) {
+        el.classList.remove("hidden-item");
+        count++;
+      } else {
+        el.classList.add("hidden-item");
+      }
+    });
+
+    // Update screen reader status
+    if (statusEl) {
+      if (filter === "all") {
+        statusEl.textContent = `Showing all ${total} works.`;
+      } else {
+        statusEl.textContent = `Showing ${count} of ${total} ${filter} works.`;
+      }
+    }
+
+    // Update URL
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      if (filter === "all") {
+        url.searchParams.delete("filter");
+      } else {
+        url.searchParams.set("filter", filter);
+      }
+      window.history.replaceState({}, "", url);
+    }
+  }
+
+  // Event Listeners
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filter = (btn as HTMLElement).dataset.filter ?? "all";
+      applyFilter(filter);
+    });
+  });
+
+  // Handle initial load from URL
+  const initialParams = new URLSearchParams(window.location.search);
+  const initialFilter = initialParams.get("filter");
+  if (initialFilter) {
+    applyFilter(initialFilter, false);
+  }
+
+</script>

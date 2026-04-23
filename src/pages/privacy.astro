@@ -1,0 +1,210 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { CONTACT_INFO } from "../config";
+---
+
+<Layout
+  title="Privacy Policy | The Quiet Guardian"
+  description="Our commitment to the respectful and secure handling of your family's data."
+>
+  <Nav />
+
+  <main id="main-content" class="pt-40 pb-32">
+    <div class="max-w-3xl mx-auto px-8 md:px-12">
+      <h1
+        class="text-4xl md:text-5xl mb-12"
+        style="font-family: var(--font-headline); color: var(--on-surface);"
+      >
+        Privacy Policy
+      </h1>
+
+      <div
+        class="prose prose-stone max-w-none space-y-8"
+        style="color: var(--on-surface-variant);"
+      >
+        <section>
+          <h2
+            class="text-xl font-bold uppercase tracking-widest mb-4"
+            style="color: var(--primary);"
+          >
+            1. Controller Identity
+          </h2>
+          <p class="leading-relaxed">
+            The Quiet Guardian ("we," "us," or "our") is the data controller for
+            the personal information collected through this website. We are
+            registered in Ireland.<br /><br />
+            <strong>Business Address:</strong>
+            {CONTACT_INFO.businessAddress}, Ireland<br />
+            <strong>Contact:</strong>
+            <a
+              href="mailto:care@quietguardian.com"
+              style="color: var(--primary); text-decoration: underline;"
+              >care@quietguardian.com</a
+            >
+          </p>
+        </section>
+
+        <section>
+          <h2
+            class="text-xl font-bold uppercase tracking-widest mb-4"
+            style="color: var(--primary);"
+          >
+            2. Legal Basis for Processing
+          </h2>
+          <p class="leading-relaxed">
+            We process your personal data under the following legal bases:
+          </p>
+          <ul class="list-disc pl-6 space-y-2 mt-4">
+            <li>
+              <strong>Contractual Necessity:</strong> To provide the professional
+              assessment and restoration services you request.
+            </li>
+            <li>
+              <strong>Legitimate Interests:</strong> To respond to inquiries and improve
+              our preservation services.
+            </li>
+            <li>
+              <strong>Consent:</strong> Where you have explicitly opted in to specific
+              communications or data uses.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2
+            class="text-xl font-bold uppercase tracking-widest mb-4"
+            style="color: var(--primary);"
+          >
+            3. Data We Collect
+          </h2>
+          <p class="leading-relaxed">
+            We only collect the information necessary to provide our
+            professional services. This includes:
+          </p>
+          <ul class="list-disc pl-6 space-y-2 mt-4">
+            <li>
+              <strong>Contact Details:</strong> Name, email address, and phone number.
+            </li>
+            <li>
+              <strong>Site Details:</strong> Cemetery name, section/plot numbers,
+              and names on memorials.
+            </li>
+            <li>
+              <strong>Geographic Data:</strong> GPS coordinates provided via our interactive
+              map.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2
+            class="text-xl font-bold uppercase tracking-widest mb-4"
+            style="color: var(--primary);"
+          >
+            4. Third-Party Processors
+          </h2>
+          <p class="leading-relaxed">
+            We use a limited number of trusted third-party services to operate
+            our business:
+          </p>
+          <ul class="list-disc pl-6 space-y-2 mt-4">
+            <li>
+              <strong>Formspree:</strong> To securely process and deliver your assessment
+              requests to our team.
+            </li>
+            <li>
+              <strong>Plausible Analytics:</strong> For privacy-friendly website analytics
+              that do not use cookies or collect personal data.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2
+            class="text-xl font-bold uppercase tracking-widest mb-4"
+            style="color: var(--primary);"
+          >
+            5. Data Retention
+          </h2>
+          <p class="leading-relaxed">
+            We retain your personal data only for as long as necessary to fulfil
+            the purposes for which it was collected, including for the purposes
+            of satisfying any legal, accounting, or reporting requirements.
+            Typically, inquiry data is held for 24 months unless a service
+            contract is initiated.
+          </p>
+        </section>
+
+        <section>
+          <h2
+            class="text-xl font-bold uppercase tracking-widest mb-4"
+            style="color: var(--primary);"
+          >
+            6. Your Data Rights
+          </h2>
+          <p class="leading-relaxed">
+            Under the GDPR, you have the following rights regarding your
+            personal data:
+          </p>
+          <ul class="list-disc pl-6 space-y-2 mt-4">
+            <li>
+              <strong>Right to Access:</strong> Request a copy of the data we hold
+              about you.
+            </li>
+            <li>
+              <strong>Right to Rectification:</strong> Request that we correct inaccurate
+              or incomplete data.
+            </li>
+            <li>
+              <strong>Right to Erasure:</strong> Request that we delete your data
+              ("right to be forgotten").
+            </li>
+            <li>
+              <strong>Right to Portability:</strong> Request a transfer of your data
+              to another service.
+            </li>
+            <li>
+              <strong>Right to Object:</strong> Object to our processing of your data
+              based on legitimate interests.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2
+            class="text-xl font-bold uppercase tracking-widest mb-4"
+            style="color: var(--primary);"
+          >
+            7. Right to Lodge a Complaint
+          </h2>
+          <p class="leading-relaxed">
+            If you believe we have not handled your data correctly, you have the
+            right to lodge a complaint with the Data Protection Commission
+            (DPC), the Irish supervisory authority for data protection issues (<a
+              href="https://www.dataprotection.ie"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="color: var(--primary); text-decoration: underline;"
+              >www.dataprotection.ie</a
+            >).
+          </p>
+        </section>
+
+        <section class="pt-8 border-t border-outline-variant/20">
+          <p class="text-sm italic">
+            Last Updated: April 2026<br />
+            For any privacy-related inquiries, please contact <a
+              href="mailto:care@quietguardian.com"
+              style="color: var(--primary); text-decoration: underline;"
+              >care@quietguardian.com</a
+            >
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

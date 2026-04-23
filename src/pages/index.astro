@@ -1,11 +1,491 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { Image } from "astro:assets";
+import assessmentImage from "../assets/assessment_image.png";
+import careImage from "../assets/care_image.png";
+import heroImage from "../assets/legacy_wide_shot.png";
+import preservationImage from "../assets/preservation_image.png";
+import revealLeftImage from "../assets/reveal_left_image.png";
+import revealRightImage from "../assets/reveal_right_image.png";
+import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="The Quiet Guardian | Digital Preservation with Dignity"
+  preloadImage={heroImage.src}
+>
+  <Nav />
+
+  <main id="main-content">
+    <!-- ── Hero ───────────────────────────────────────────────── -->
+    <section
+      class="relative min-h-screen flex items-center px-8 md:px-12 pt-32 pb-20 max-w-screen-2xl mx-auto"
+      aria-labelledby="hero-headline"
+    >
+      <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Text -->
+        <div class="lg:col-span-6 z-10">
+          <p
+            class="reveal text-xs font-bold uppercase tracking-widest mb-6"
+            style="color: var(--primary);"
+            data-delay="0"
+          >
+            Memorial Preservation Services
+          </p>
+          <h1
+            id="hero-headline"
+            class="reveal font-serif text-5xl md:text-7xl leading-[1.1] mb-8"
+            style="font-family: var(--font-headline); color: var(--on-surface);"
+            data-delay="100"
+          >
+            Preserving Legacy<br />
+            <em class="font-light" style="color: var(--primary);"
+              >with Dignity.</em
+            >
+          </h1>
+          <p
+            class="reveal text-lg leading-relaxed mb-10 max-w-xl"
+            style="color: var(--on-surface-variant);"
+            data-delay="200"
+          >
+            We provide meticulous, hand-crafted maintenance and restoration
+            services for those who deserve to be remembered clearly. A silent
+            steward for your family's history.
+          </p>
+          <div class="reveal flex flex-wrap gap-4" data-delay="300">
+            <a href="/request-care" class="btn-primary">
+              Book a Consultation
+            </a>
+            <a href="/portfolio" class="btn-secondary"> View Our Work </a>
+          </div>
+        </div>
+
+        <!-- Image -->
+        <div class="lg:col-span-6 relative reveal" data-delay="150">
+          <div
+            class="aspect-4/5 rounded-xl overflow-hidden shadow-2xl"
+            style="box-shadow: 0 40px 80px rgba(50,51,47,0.18);"
+          >
+            <Image
+              src={heroImage}
+              alt="A cinematic wide shot of a historic cemetery in Leinster, featuring a beautifully preserved monument at golden hour"
+              class="w-full h-full object-cover"
+              loading="eager"
+            />
+          </div>
+          <!-- Decorative block -->
+          <div
+            class="absolute -bottom-8 -left-8 w-48 h-48 rounded-xl -z-10 hidden lg:block"
+            style="background: var(--surface-container-low);"
+          >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Philosophy ─────────────────────────────────────────── -->
+    <section
+      class="py-32 px-8 md:px-12"
+      style="background: var(--surface-container-low);"
+      aria-labelledby="philosophy-heading"
+    >
+      <div class="max-w-screen-2xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+          <div>
+            <p
+              class="reveal text-xs font-bold uppercase tracking-widest mb-5"
+              style="color: var(--primary);"
+              data-delay="0"
+            >
+              Our Commitment
+            </p>
+            <h2
+              id="philosophy-heading"
+              class="reveal text-4xl md:text-5xl leading-tight"
+              style="font-family: var(--font-headline); color: var(--on-surface);"
+              data-delay="80"
+            >
+              Every stone tells a story. We ensure it remains legible for the
+              generations that follow.
+            </h2>
+          </div>
+          <div class="space-y-8">
+            <p
+              class="reveal text-lg leading-relaxed"
+              style="color: var(--on-surface-variant);"
+              data-delay="120"
+            >
+              Traditional maintenance can be harsh and impersonal. At The Quiet
+              Guardian, we utilise biological cleaning solutions and
+              soft-bristled techniques that respect the integrity of the stone.
+            </p>
+            <blockquote
+              class="reveal pl-8"
+              style="border-left: 2px solid rgba(80,99,88,0.25);"
+              data-delay="180"
+            >
+              <p
+                class="text-xl italic"
+                style="font-family: var(--font-headline); color: var(--primary-dim);"
+              >
+                The true museum is the history of our ancestors, written in the
+                quiet corners of our local landscapes.
+              </p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Process Cards (Bento) ──────────────────────────────── -->
+    <section
+      class="py-32 px-8 md:px-12 max-w-screen-2xl mx-auto"
+      aria-labelledby="process-heading"
+    >
+      <div
+        class="flex flex-col md:flex-row justify-between items-end gap-8 mb-20"
+      >
+        <div class="max-w-xl text-left">
+          <h2
+            id="process-heading"
+            class="reveal text-4xl md:text-5xl mb-4"
+            style="font-family: var(--font-headline); color: var(--on-surface);"
+            data-delay="0"
+          >
+            A Process of Care
+          </h2>
+          <p
+            class="reveal text-xs font-bold uppercase tracking-widest"
+            style="color: var(--on-surface-variant);"
+            data-delay="80"
+          >
+            Three Steps to Digital and Physical Preservation
+          </p>
+        </div>
+        <div class="reveal text-right hidden md:block" data-delay="120">
+          <p
+            class="text-[10px] font-bold uppercase tracking-[0.2em] mb-2"
+            style="color: var(--primary);"
+          >
+            Professional Services
+          </p>
+          <p
+            class="text-3xl font-serif italic"
+            style="color: var(--on-surface);"
+          >
+            Starting from €45
+          </p>
+        </div>
+      </div>
+
+      <ul class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Step 1 -->
+        <li
+          class="reveal flex flex-col justify-between rounded-xl p-10"
+          style="background: var(--surface-container);"
+          data-delay="0"
+        >
+          <article>
+            <span
+              class="material-symbols-outlined text-4xl mb-6 block"
+              style="color: var(--primary);"
+              aria-hidden="true">search</span
+            >
+            <h3
+              class="text-2xl mb-4"
+              style="font-family: var(--font-headline); color: var(--on-surface);"
+            >
+              Assessment
+            </h3>
+            <p
+              class="leading-relaxed mb-8"
+              style="color: var(--on-surface-variant);"
+            >
+              We conduct a thorough condition report, identifying stone type,
+              biological growth, and structural integrity before any work
+              begins.
+            </p>
+          </article>
+          <div
+            class="h-48 w-full rounded-xl overflow-hidden"
+            style="filter: grayscale(1);"
+          >
+            <Image
+              src={assessmentImage}
+              alt="A hand gently touching the mossy texture of a granite headstone"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </li>
+
+        <!-- Step 2 — elevated -->
+        <li
+          class="reveal flex flex-col justify-between rounded-xl p-10 md:-translate-y-6"
+          style="background: var(--primary); color: var(--on-primary);"
+          data-delay="100"
+        >
+          <article>
+            <span
+              class="material-symbols-outlined text-4xl mb-6 block"
+              style="color: var(--primary-fixed);"
+              aria-hidden="true">brush</span
+            >
+            <h3
+              class="text-2xl mb-4"
+              style="font-family: var(--font-headline);"
+            >
+              Curated Care
+            </h3>
+            <p
+              class="leading-relaxed mb-8"
+              style="color: rgba(233,254,239,0.8);"
+            >
+              Hand-scrubbing with pH-neutral, biological cleaners that remove
+              lichen and atmospheric pollutants without damaging the substrate.
+            </p>
+          </article>
+          <div class="h-48 w-full rounded-xl overflow-hidden shadow-lg">
+            <Image
+              src={careImage}
+              alt="Detail shot of soft brush bristles gently cleaning a marble surface"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </li>
+
+        <!-- Step 3 -->
+        <li
+          class="reveal flex flex-col justify-between rounded-xl p-10"
+          style="background: var(--surface-container);"
+          data-delay="200"
+        >
+          <article>
+            <span
+              class="material-symbols-outlined text-4xl mb-6 block"
+              style="color: var(--primary);"
+              aria-hidden="true">auto_awesome</span
+            >
+            <h3
+              class="text-2xl mb-4"
+              style="font-family: var(--font-headline); color: var(--on-surface);"
+            >
+              Preservation
+            </h3>
+            <p
+              class="leading-relaxed mb-8"
+              style="color: var(--on-surface-variant);"
+            >
+              The final result is documented with high-resolution photography
+              and GPS mapping for your family's digital archive.
+            </p>
+          </article>
+          <div
+            class="h-48 w-full rounded-xl overflow-hidden"
+            style="filter: grayscale(1);"
+          >
+            <Image
+              src={preservationImage}
+              alt="A beautifully cleaned white marble headstone standing bright against a lush green grass background"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ── Before / After Reveal ──────────────────────────────── -->
+    <section
+      class="py-32 px-8 md:px-12"
+      style="background: var(--surface-container-low);"
+      aria-labelledby="reveal-heading"
+    >
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h2
+            id="reveal-heading"
+            class="reveal text-4xl md:text-5xl mb-6"
+            style="font-family: var(--font-headline); color: var(--on-surface);"
+            data-delay="0"
+          >
+            Restored to Clarity
+          </h2>
+          <p
+            class="reveal"
+            style="color: var(--on-surface-variant);"
+            data-delay="80"
+          >
+            Drag the slider to see the impact of our preservation techniques.
+          </p>
+        </div>
+
+        <div class="reveal" data-delay="120">
+          <BeforeAfterSlider
+            id="reveal-slider"
+            beforeSrc={revealLeftImage}
+            afterSrc={revealRightImage}
+            beforeAlt="Weathered headstone — before preservation"
+            afterAlt="Restored headstone — after preservation"
+            beforeLabel="Original"
+            afterLabel="Restored"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Testimonials ───────────────────────────────────────── -->
+    <section
+      class="py-32 px-8 md:px-12 max-w-screen-2xl mx-auto"
+      aria-labelledby="testimonials-heading"
+    >
+      <div class="flex flex-col md:flex-row gap-16">
+        <div class="md:w-1/3">
+          <h2
+            id="testimonials-heading"
+            class="reveal text-4xl md:text-5xl mb-8"
+            style="font-family: var(--font-headline); color: var(--on-surface);"
+            data-delay="0"
+          >
+            Voices of Remembrance
+          </h2>
+          <p
+            class="reveal leading-relaxed"
+            style="color: var(--on-surface-variant);"
+            data-delay="80"
+          >
+            The families we serve find peace in knowing their history is being
+            cared for with the highest level of detail.
+          </p>
+        </div>
+        <div class="md:w-2/3 space-y-10">
+          <!-- Testimonial 1 -->
+          <figure
+            class="reveal md:ml-12 p-12 rounded-xl shadow-sm"
+            style="background: var(--surface-container-lowest); border-left: 4px solid var(--primary);"
+            data-delay="100"
+          >
+            <blockquote>
+              <p
+                class="text-2xl italic leading-relaxed mb-8"
+                style="font-family: var(--font-headline); color: var(--on-surface);"
+              >
+                "I live in the west of Ireland and haven't been able to visit my
+                grandmother's site in years due to declining health. Seeing the
+                high-resolution photos of her cleaned headstone brought me to
+                tears. It looks as it did the day we laid her to rest."
+              </p>
+            </blockquote>
+            <figcaption class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 rounded-full flex items-center justify-center font-serif text-sm font-bold"
+                style="background: var(--secondary-container); color: var(--on-secondary-container);"
+                aria-hidden="true"
+              >
+                MM
+              </div>
+              <div>
+                <p class="font-bold" style="color: var(--on-surface);">
+                  Mary Muldowney
+                </p>
+                <p
+                  class="text-xs uppercase tracking-widest"
+                  style="color: var(--on-surface-variant);"
+                >
+                  Legacy Archive Member
+                </p>
+              </div>
+            </figcaption>
+          </figure>
+
+          <!-- Testimonial 2 -->
+          <figure
+            class="reveal md:mr-12 p-12 rounded-xl"
+            style="background: var(--surface-container);"
+            data-delay="200"
+          >
+            <blockquote>
+              <p
+                class="text-xl italic leading-relaxed mb-8"
+                style="font-family: var(--font-headline); color: var(--on-surface);"
+              >
+                "Professional, discreet, and incredibly respectful. They didn't
+                just clean the stone; they treated the entire surrounding area
+                with such care. Highly recommend their yearly maintenance plan."
+              </p>
+            </blockquote>
+            <figcaption class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 rounded-full flex items-center justify-center font-serif text-sm font-bold"
+                style="background: var(--primary-container); color: var(--on-primary-container);"
+                aria-hidden="true"
+              >
+                BC
+              </div>
+              <div>
+                <p class="font-bold" style="color: var(--on-surface);">
+                  Brendan O'Connell
+                </p>
+                <p
+                  class="text-xs uppercase tracking-widest"
+                  style="color: var(--on-surface-variant);"
+                >
+                  Estate Executor
+                </p>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ────────────────────────────────────────────────── -->
+    <section
+      class="mb-32 px-8 md:px-12 max-w-screen-2xl mx-auto"
+      aria-labelledby="cta-heading"
+    >
+      <div
+        class="stone-gradient rounded-xl p-16 text-center relative overflow-hidden"
+        style="color: var(--on-primary);"
+      >
+        <div
+          class="absolute top-0 right-0 w-96 h-96 rounded-full -translate-y-1/2 translate-x-1/2"
+          style="background: rgba(255,255,255,0.05);"
+          aria-hidden="true"
+        >
+        </div>
+        <div class="relative z-10">
+          <h2
+            id="cta-heading"
+            class="reveal text-4xl md:text-5xl mb-8"
+            style="font-family: var(--font-headline);"
+            data-delay="0"
+          >
+            Ready to honour their memory?
+          </h2>
+          <p
+            class="reveal text-xl mb-12 mx-auto max-w-2xl"
+            style="color: var(--primary-fixed);"
+            data-delay="80"
+          >
+            Start with a professional condition assessment. We serve historic
+            and modern cemeteries throughout Leinster.
+          </p>
+          <a
+            href="/request-care"
+            class="reveal inline-flex items-center gap-2 px-12 py-5 rounded-xl font-bold text-lg transition-colors duration-300"
+            style="background: var(--surface); color: var(--primary);"
+            data-delay="160"
+          >
+            Begin Your Request
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
 </Layout>

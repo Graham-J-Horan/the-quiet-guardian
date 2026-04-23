@@ -12,9 +12,15 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
     "@playform/format": "^0.0.8",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.7",
+    "leaflet": "^1.9.4",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.21"
   }
 }
