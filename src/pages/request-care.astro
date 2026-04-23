@@ -5,7 +5,9 @@ import Layout from "../layouts/Layout.astro";
 import { CONTACT_INFO } from "../config";
 
 const { whatsappNumber, phoneNumber } = CONTACT_INFO;
-const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://formspree.io/f/xzdjkebn";
+const formspreeEndpoint =
+  import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ??
+  "https://formspree.io/f/mjgjolje";
 ---
 
 <Layout
@@ -14,55 +16,87 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
 >
   <Nav />
 
-  <main 
-    id="main-content" 
-    class="pt-28 pb-32"
-    data-endpoint={formspreeEndpoint}
-  >
-
+  <main id="main-content" class="pt-28 pb-32" data-endpoint={formspreeEndpoint}>
     <div class="max-w-4xl mx-auto px-8 md:px-12">
       <h1 class="sr-only">Request Care for a Memorial Site</h1>
 
       <!-- ── Step Indicator ────────────────────────────────────── -->
       <nav aria-label="Form progress — 4 steps" class="mb-16">
         <ol id="step-indicator" class="flex items-start gap-0" role="list">
-          {[
-            { n: 1, label: 'Location' },
-            { n: 2, label: 'Service' },
-            { n: 3, label: 'Scheduling' },
-            { n: 4, label: 'Review' },
-          ].map(({ n, label }, i) => (
-            <li class="flex-1 flex flex-col items-center relative step-item" data-step={n} role="listitem">
-              {i > 0 && (
-                <div class="step-connector absolute top-5 right-1/2 left-0 h-px" style="background: var(--surface-container-high);" aria-hidden="true"></div>
-              )}
-              <div
-                class={`step-circle relative z-10 w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-400 ${n === 1 ? 'step-active' : 'step-pending'}`}
-                aria-current={n === 1 ? 'step' : undefined}
+          {
+            [
+              { n: 1, label: "Location" },
+              { n: 2, label: "Service" },
+              { n: 3, label: "Scheduling" },
+              { n: 4, label: "Review" },
+            ].map(({ n, label }, i) => (
+              <li
+                class="flex-1 flex flex-col items-center relative step-item"
+                data-step={n}
+                role="listitem"
               >
-                {n}
-              </div>
-              <p class={`mt-2 text-xs font-bold uppercase tracking-widest ${n === 1 ? '' : 'opacity-50'}`} style="color: var(--on-surface-variant);">{label}</p>
-            </li>
-          ))}
+                {i > 0 && (
+                  <div
+                    class="step-connector absolute top-5 right-1/2 left-0 h-px"
+                    style="background: var(--surface-container-high);"
+                    aria-hidden="true"
+                  />
+                )}
+                <div
+                  class={`step-circle relative z-10 w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-400 ${n === 1 ? "step-active" : "step-pending"}`}
+                  aria-current={n === 1 ? "step" : undefined}
+                >
+                  {n}
+                </div>
+                <p
+                  class={`mt-2 text-xs font-bold uppercase tracking-widest ${n === 1 ? "" : "opacity-50"}`}
+                  style="color: var(--on-surface-variant);"
+                >
+                  {label}
+                </p>
+              </li>
+            ))
+          }
         </ol>
       </nav>
 
       <!-- ── Step 1: Site Location ──────────────────────────────── -->
       <section id="step-1" class="step-panel" aria-labelledby="step1-heading">
-        <h2 id="step1-heading" class="reveal text-4xl md:text-5xl mb-4" style="font-family: var(--font-headline); color: var(--on-surface);" data-delay="0">
+        <h2
+          id="step1-heading"
+          class="reveal text-4xl md:text-5xl mb-4"
+          style="font-family: var(--font-headline); color: var(--on-surface);"
+          data-delay="0"
+        >
           Site Location
         </h2>
-        <p class="reveal mb-12 leading-relaxed max-w-xl" style="color: var(--on-surface-variant);" data-delay="80">
+        <p
+          class="reveal mb-12 leading-relaxed max-w-xl"
+          style="color: var(--on-surface-variant);"
+          data-delay="80"
+        >
           Provide the details of the sanctuary where your loved one rests.
         </p>
 
         <!-- Friction reduction notice -->
-        <div class="reveal mb-10 p-4 rounded-lg bg-surface-container-low border border-primary/10" data-delay="90">
+        <div
+          class="reveal mb-10 p-4 rounded-lg bg-surface-container-low border border-primary/10"
+          data-delay="90"
+        >
           <div class="flex items-start gap-3">
-            <input type="checkbox" id="unsure-location" name="unsureLocation" class="mt-1 w-4 h-4 accent-primary" />
-            <label for="unsure-location" class="text-sm italic" style="color: var(--on-surface-variant);">
-              <strong>Not sure of the exact plot?</strong> Just give us the cemetery name and any details you have; we will help you find it during our assessment.
+            <input
+              type="checkbox"
+              id="unsure-location"
+              name="unsureLocation"
+              class="mt-1 w-4 h-4 accent-primary"
+            />
+            <label
+              for="unsure-location"
+              class="text-sm italic"
+              style="color: var(--on-surface-variant);"
+            >
+              <strong>Not sure of the exact plot?</strong> Just give us the cemetery
+              name and any details you have; we will help you find it during our assessment.
             </label>
           </div>
         </div>
@@ -70,9 +104,10 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
           <!-- Form fields -->
           <div class="space-y-6">
-
             <div class="reveal" data-delay="100">
-              <label for="cemetery" class="field-label">Cemetery or Memorial Park</label>
+              <label for="cemetery" class="field-label"
+                >Cemetery or Memorial Park</label
+              >
               <input
                 type="text"
                 id="cemetery"
@@ -87,7 +122,8 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
 
             <div class="reveal grid grid-cols-2 gap-4" data-delay="140">
               <div>
-                <label for="section" class="field-label">Section / Plot #</label>
+                <label for="section" class="field-label">Section / Plot #</label
+                >
                 <input
                   type="text"
                   id="section"
@@ -113,11 +149,20 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
             <!-- Honeypot field -->
             <div class="sr-only" aria-hidden="true">
               <label for="website" aria-hidden="true">Website</label>
-              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <input
+                type="text"
+                id="website"
+                name="website"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+              />
             </div>
 
             <div class="reveal" data-delay="180">
-              <label for="name-on-stone" class="field-label">Full Name on Stone</label>
+              <label for="name-on-stone" class="field-label"
+                >Full Name on Stone</label
+              >
               <input
                 type="text"
                 id="name-on-stone"
@@ -130,34 +175,44 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
             </div>
 
             <div class="reveal" data-delay="220">
-              <label for="additional-notes" class="field-label">Additional Notes</label>
+              <label for="additional-notes" class="field-label"
+                >Additional Notes</label
+              >
               <textarea
                 id="additional-notes"
                 name="notes"
                 class="field-input"
                 rows="3"
                 placeholder="Nearby landmarks, specific access instructions, or special considerations…"
-                style="resize: vertical;"
-              ></textarea>
+                style="resize: vertical;"></textarea>
             </div>
           </div>
 
           <!-- Map Container -->
           <div class="reveal" data-delay="120">
-            <p class="field-label mb-3">Pin Location <span style="color: var(--outline); font-weight: 400;">(optional)</span></p>
+            <p class="field-label mb-3">
+              Pin Location <span
+                style="color: var(--outline); font-weight: 400;"
+                >(optional)</span>
+            </p>
             <div
               id="map"
               class="relative rounded-xl overflow-hidden shadow-sm border border-outline-variant/30"
               style="background: var(--surface-container); aspect-ratio: 4/3; width: 100%; height: auto; min-height: 300px; z-index: 1;"
               aria-label="Interactive map for pinning memorial site location"
             >
-              <div class="flex items-center justify-center h-full text-sm italic" style="color: var(--on-surface-variant);">
+              <div
+                class="flex items-center justify-center h-full text-sm italic"
+                style="color: var(--on-surface-variant);"
+              >
                 Initialising preservation map...
               </div>
             </div>
             <input type="hidden" id="latitude" name="latitude" />
             <input type="hidden" id="longitude" name="longitude" />
-            <p class="mt-3 text-xs" style="color: var(--outline);">Drop a pin at the precise location if known.</p>
+            <p class="mt-3 text-xs" style="color: var(--outline);">
+              Drop a pin at the precise location if known.
+            </p>
           </div>
         </div>
 
@@ -170,80 +225,164 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
             aria-label="Proceed to Service Selection — step 2 of 4"
           >
             Proceed to Service Selection
-            <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_forward</span>
+            <span class="material-symbols-outlined text-base" aria-hidden="true"
+              >arrow_forward</span
+            >
           </button>
         </div>
       </section>
 
       <!-- ── Step 2: Service Selection ─────────────────────────── -->
-      <section id="step-2" class="step-panel hidden" aria-labelledby="step2-heading">
-        <h2 id="step2-heading" class="text-4xl md:text-5xl mb-12" style="font-family: var(--font-headline); color: var(--on-surface);">
+      <section
+        id="step-2"
+        class="step-panel hidden"
+        aria-labelledby="step2-heading"
+      >
+        <h2
+          id="step2-heading"
+          class="text-4xl md:text-5xl mb-12"
+          style="font-family: var(--font-headline); color: var(--on-surface);"
+        >
           Service Selection
         </h2>
 
         <div class="space-y-4" role="group" aria-labelledby="step2-heading">
-          {[
-            { id: 'basic',       label: 'Basic Care',        price: '€45',  desc: 'Gentle surface cleaning and maintenance — ideal for well-preserved memorials.' },
-            { id: 'restorative', label: 'Restorative Care',  price: '€75',  desc: 'Our most comprehensive single-service treatment, including biological cleaning and condition assessment.' },
-            { id: 'legacy',      label: 'Peace of Mind Plan', price: '€125/yr', desc: 'Ongoing annual stewardship. Never let them be forgotten again.' },
-          ].map(({ id, label, price, desc }) => (
-            <label
-              class="service-option flex items-start gap-6 p-8 rounded-xl cursor-pointer transition-all duration-200"
-              style="background: var(--surface-container-lowest);"
-              for={`service-${id}`}
-            >
-              <input type="radio" id={`service-${id}`} name="service" value={id} class="sr-only" required />
-              <span class="service-radio w-6 h-6 rounded-full mt-1 shrink-0 flex items-center justify-center" style="border: 1.5px solid var(--outline-variant);" aria-hidden="true"></span>
-              <div class="flex-1">
-                <div class="flex justify-between items-center mb-2">
-                  <span class="font-semibold" style="color: var(--on-surface);">{label}</span>
-                  <span class="font-light" style="font-family: var(--font-headline); font-size: 1.25rem; color: var(--on-surface);">{price}</span>
+          {
+            [
+              {
+                id: "basic",
+                label: "Basic Care",
+                price: "€45",
+                desc: "Gentle surface cleaning and maintenance — ideal for well-preserved memorials.",
+              },
+              {
+                id: "restorative",
+                label: "Restorative Care",
+                price: "€75",
+                desc: "Our most comprehensive single-service treatment, including biological cleaning and condition assessment.",
+              },
+              {
+                id: "legacy",
+                label: "Peace of Mind Plan",
+                price: "€125/yr",
+                desc: "Ongoing annual stewardship. Never let them be forgotten again.",
+              },
+            ].map(({ id, label, price, desc }) => (
+              <label
+                class="service-option flex items-start gap-6 p-8 rounded-xl cursor-pointer transition-all duration-200"
+                style="background: var(--surface-container-lowest);"
+                for={`service-${id}`}
+              >
+                <input
+                  type="radio"
+                  id={`service-${id}`}
+                  name="service"
+                  value={id}
+                  class="sr-only"
+                  required
+                />
+                <span
+                  class="service-radio w-6 h-6 rounded-full mt-1 shrink-0 flex items-center justify-center"
+                  style="border: 1.5px solid var(--outline-variant);"
+                  aria-hidden="true"
+                />
+                <div class="flex-1">
+                  <div class="flex justify-between items-center mb-2">
+                    <span
+                      class="font-semibold"
+                      style="color: var(--on-surface);"
+                    >
+                      {label}
+                    </span>
+                    <span
+                      class="font-light"
+                      style="font-family: var(--font-headline); font-size: 1.25rem; color: var(--on-surface);"
+                    >
+                      {price}
+                    </span>
+                  </div>
+                  <p
+                    class="text-sm leading-relaxed"
+                    style="color: var(--on-surface-variant);"
+                  >
+                    {desc}
+                  </p>
                 </div>
-                <p class="text-sm leading-relaxed" style="color: var(--on-surface-variant);">{desc}</p>
-              </div>
-            </label>
-          ))}
+              </label>
+            ))
+          }
         </div>
 
         <!-- Inline Error for Service Selection -->
-        <div 
-          id="service-error" 
-          class="hidden mt-6 p-4 rounded-lg bg-error/10 text-error text-sm font-medium border border-error/20" 
-          role="alert" 
+        <div
+          id="service-error"
+          class="hidden mt-6 p-4 rounded-lg bg-error/10 text-error text-sm font-medium border border-error/20"
+          role="alert"
           aria-live="assertive"
         >
           Please select a service level to continue.
         </div>
 
         <p class="mt-8 text-xs italic" style="color: var(--outline);">
-          * A fixed site assessment fee of €45 applies to all new site visits. This professional fee covers the travel, logistics, and creation of a detailed condition report. This amount is fully deductible from the final cost of any selected restoration or care service.
+          * A fixed site assessment fee of €45 applies to all new site visits.
+          This professional fee covers the travel, logistics, and creation of a
+          detailed condition report. This amount is fully deductible from the
+          final cost of any selected restoration or care service.
         </p>
 
         <div class="mt-12 flex justify-between">
-          <button type="button" class="btn-back back-btn" data-target="1" aria-label="Back to Site Location — step 1">
-            <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_back</span>
+          <button
+            type="button"
+            class="btn-back back-btn"
+            data-target="1"
+            aria-label="Back to Site Location — step 1"
+          >
+            <span class="material-symbols-outlined text-base" aria-hidden="true"
+              >arrow_back</span
+            >
             Back
           </button>
-          <button type="button" id="to-step-3" class="btn-primary" aria-label="Proceed to Scheduling — step 3 of 4">
+          <button
+            type="button"
+            id="to-step-3"
+            class="btn-primary"
+            aria-label="Proceed to Scheduling — step 3 of 4"
+          >
             Continue to Scheduling
-            <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_forward</span>
+            <span class="material-symbols-outlined text-base" aria-hidden="true"
+              >arrow_forward</span
+            >
           </button>
         </div>
       </section>
 
       <!-- ── Step 3: Scheduling ─────────────────────────────────── -->
-      <section id="step-3" class="step-panel hidden" aria-labelledby="step3-heading">
-        <h2 id="step3-heading" class="text-4xl md:text-5xl mb-4" style="font-family: var(--font-headline); color: var(--on-surface);">
+      <section
+        id="step-3"
+        class="step-panel hidden"
+        aria-labelledby="step3-heading"
+      >
+        <h2
+          id="step3-heading"
+          class="text-4xl md:text-5xl mb-4"
+          style="font-family: var(--font-headline); color: var(--on-surface);"
+        >
           Preferred Scheduling
         </h2>
-        <p class="mb-12 leading-relaxed max-w-xl" style="color: var(--on-surface-variant);">
-          We'll do our best to accommodate your preferred dates. All times subject to weather conditions and team availability.
+        <p
+          class="mb-12 leading-relaxed max-w-xl"
+          style="color: var(--on-surface-variant);"
+        >
+          We'll do our best to accommodate your preferred dates. All times
+          subject to weather conditions and team availability.
         </p>
 
         <div class="space-y-12">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label for="preferred-date" class="field-label">Preferred Date</label>
+              <label for="preferred-date" class="field-label"
+                >Preferred Date</label
+              >
               <input
                 type="date"
                 id="preferred-date"
@@ -254,8 +393,16 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
               />
             </div>
             <div>
-              <label for="preferred-time" class="field-label">Preferred Time</label>
-              <select id="preferred-time" name="preferredTime" class="field-input" aria-required="true" required>
+              <label for="preferred-time" class="field-label"
+                >Preferred Time</label
+              >
+              <select
+                id="preferred-time"
+                name="preferredTime"
+                class="field-input"
+                aria-required="true"
+                required
+              >
                 <option value="">Select a time window</option>
                 <option value="morning">Morning (8am – 12pm)</option>
                 <option value="afternoon">Afternoon (12pm – 4pm)</option>
@@ -266,21 +413,54 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
 
           <!-- Access & Permission -->
           <div class="pt-8 border-t border-outline-variant/20">
-            <h3 class="text-xs font-bold uppercase tracking-widest mb-6" style="color: var(--primary);">Access & Permission</h3>
+            <h3
+              class="text-xs font-bold uppercase tracking-widest mb-6"
+              style="color: var(--primary);"
+            >
+              Access & Permission
+            </h3>
             <div class="space-y-6">
-              <div class="flex items-start gap-4 p-5 rounded-xl bg-surface-container-low">
-                <input type="checkbox" id="legal-permission" name="legalPermission" class="mt-1 w-5 h-5 accent-primary" required />
-                <label for="legal-permission" class="text-sm leading-relaxed" style="color: var(--on-surface-variant);">
-                  <strong>Authority Confirmation:</strong> I confirm that I am the legal owner of the memorial site or have received explicit permission from the family/relevant authority to request professional maintenance and restoration services.
+              <div
+                class="flex items-start gap-4 p-5 rounded-xl bg-surface-container-low"
+              >
+                <input
+                  type="checkbox"
+                  id="legal-permission"
+                  name="legalPermission"
+                  class="mt-1 w-5 h-5 accent-primary"
+                  required
+                />
+                <label
+                  for="legal-permission"
+                  class="text-sm leading-relaxed"
+                  style="color: var(--on-surface-variant);"
+                >
+                  <strong>Authority Confirmation:</strong> I confirm that I am the
+                  legal owner of the memorial site or have received explicit permission
+                  from the family/relevant authority to request professional maintenance
+                  and restoration services.
                 </label>
               </div>
               <div>
-                <label for="access-info" class="field-label">Cemetery Access Requirements</label>
-                <select id="access-info" name="accessRequirements" class="field-input" style="cursor: pointer;">
-                  <option value="public">Open to the Public (Normal Hours)</option>
+                <label for="access-info" class="field-label"
+                  >Cemetery Access Requirements</label
+                >
+                <select
+                  id="access-info"
+                  name="accessRequirements"
+                  class="field-input"
+                  style="cursor: pointer;"
+                >
+                  <option value="public"
+                    >Open to the Public (Normal Hours)</option
+                  >
                   <option value="gate-code">Key or Access Code Required</option>
-                  <option value="appointment">Appointment with Caretaker Needed</option>
-                  <option value="restricted">Restricted / Private Access Only</option>
+                  <option value="appointment"
+                    >Appointment with Caretaker Needed</option
+                  >
+                  <option value="restricted"
+                    >Restricted / Private Access Only</option
+                  >
                 </select>
               </div>
             </div>
@@ -289,72 +469,196 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
           <div class="space-y-6 pt-8 border-t border-outline-variant/20">
             <div>
               <label for="contact-name" class="field-label">Your Name</label>
-              <input type="text" id="contact-name" name="contactName" class="field-input" placeholder="Full name" autocomplete="name" required />
+              <input
+                type="text"
+                id="contact-name"
+                name="contactName"
+                class="field-input"
+                placeholder="Full name"
+                autocomplete="name"
+                required
+              />
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label for="contact-email" class="field-label">Email Address</label>
-                <input type="email" id="contact-email" name="email" class="field-input" placeholder="your@email.com" autocomplete="email" required />
+                <label for="contact-email" class="field-label"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  class="field-input"
+                  placeholder="your@email.com"
+                  autocomplete="email"
+                  required
+                />
               </div>
               <div>
-                <label for="contact-phone" class="field-label">Phone Number</label>
-                <input type="tel" id="contact-phone" name="phone" class="field-input" placeholder="+353 00 000 0000" autocomplete="tel" required />
+                <label for="contact-phone" class="field-label"
+                  >Phone Number</label
+                >
+                <input
+                  type="tel"
+                  id="contact-phone"
+                  name="phone"
+                  class="field-input"
+                  placeholder="+353 00 000 0000"
+                  autocomplete="tel"
+                  required
+                />
               </div>
             </div>
           </div>
         </div>
 
         <!-- Direct Contact Support -->
-        <div class="mt-10 p-6 rounded-xl bg-surface-container-low/50 border border-outline-variant/10 text-center">
-          <p class="text-xs font-bold uppercase tracking-widest mb-3" style="color: var(--primary);">Need Assistance?</p>
-          <p class="text-sm leading-relaxed mb-4" style="color: var(--on-surface-variant);">If you prefer to speak with a guardian directly before submitting your request, please call us.</p>
-          <a href={`tel:${phoneNumber}`} class="inline-flex items-center gap-2 text-lg font-bold" style="color: var(--on-surface);">
+        <div
+          class="mt-10 p-6 rounded-xl bg-surface-container-low/50 border border-outline-variant/10 text-center"
+        >
+          <p
+            class="text-xs font-bold uppercase tracking-widest mb-3"
+            style="color: var(--primary);"
+          >
+            Need Assistance?
+          </p>
+          <p
+            class="text-sm leading-relaxed mb-4"
+            style="color: var(--on-surface-variant);"
+          >
+            If you prefer to speak with a guardian directly before submitting
+            your request, please call us.
+          </p>
+          <a
+            href={`tel:${phoneNumber}`}
+            class="inline-flex items-center gap-2 text-lg font-bold"
+            style="color: var(--on-surface);"
+          >
             <span class="material-symbols-outlined">call</span>
             {phoneNumber}
           </a>
         </div>
 
         <div class="mt-12 flex justify-between">
-          <button type="button" class="btn-back back-btn" data-target="2" aria-label="Back to Service Selection — step 2">
-            <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_back</span>
+          <button
+            type="button"
+            class="btn-back back-btn"
+            data-target="2"
+            aria-label="Back to Service Selection — step 2"
+          >
+            <span class="material-symbols-outlined text-base" aria-hidden="true"
+              >arrow_back</span
+            >
             Back
           </button>
-          <button type="button" id="to-step-4" class="btn-primary" aria-label="Proceed to Review — step 4 of 4">
+          <button
+            type="button"
+            id="to-step-4"
+            class="btn-primary"
+            aria-label="Proceed to Review — step 4 of 4"
+          >
             Review Request
-            <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_forward</span>
+            <span class="material-symbols-outlined text-base" aria-hidden="true"
+              >arrow_forward</span
+            >
           </button>
         </div>
       </section>
 
       <!-- ── Step 4: Review ─────────────────────────────────────── -->
-      <section id="step-4" class="step-panel hidden" aria-labelledby="step4-heading">
-        
-        <div class="mb-10 p-8 rounded-xl border-l-4 border-primary shadow-sm" style="background: var(--surface-container-low);">
+      <section
+        id="step-4"
+        class="step-panel hidden"
+        aria-labelledby="step4-heading"
+      >
+        <div
+          class="mb-10 p-8 rounded-xl border-l-4 border-primary shadow-sm"
+          style="background: var(--surface-container-low);"
+        >
           <div class="flex items-center gap-3 mb-3">
-             <span class="material-symbols-outlined text-primary" aria-hidden="true">assignment_turned_in</span>
-             <p class="text-sm font-bold uppercase tracking-widest" style="color: var(--on-surface);">Professional Assessment Request</p>
+            <span
+              class="material-symbols-outlined text-primary"
+              aria-hidden="true">assignment_turned_in</span
+            >
+            <p
+              class="text-sm font-bold uppercase tracking-widest"
+              style="color: var(--on-surface);"
+            >
+              Professional Assessment Request
+            </p>
           </div>
-          <p class="text-sm leading-relaxed" style="color: var(--on-surface-variant);">
-            By submitting this request, you are initiating a formal site assessment by our guardians. A member of our team will contact you within 48 hours to confirm cemetery access and issue the assessment fee invoice (€45). This request does not constitute a booking until the fee is settled.
+          <p
+            class="text-sm leading-relaxed"
+            style="color: var(--on-surface-variant);"
+          >
+            By submitting this request, you are initiating a formal site
+            assessment by our guardians. A member of our team will contact you
+            within 48 hours to confirm cemetery access and issue the assessment
+            fee invoice (€45). This request does not constitute a booking until
+            the fee is settled.
           </p>
         </div>
 
-        <h2 id="step4-heading" class="text-4xl md:text-5xl mb-10" style="font-family: var(--font-headline); color: var(--on-surface);">
+        <h2
+          id="step4-heading"
+          class="text-4xl md:text-5xl mb-10"
+          style="font-family: var(--font-headline); color: var(--on-surface);"
+        >
           Review Your Request
         </h2>
 
-        <div class="rounded-xl p-8 mb-10 space-y-6" style="background: var(--surface-container-lowest);">
+        <div
+          class="rounded-xl p-8 mb-10 space-y-6"
+          style="background: var(--surface-container-lowest);"
+        >
           <div>
-            <h3 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--primary);">Site Location</h3>
-            <div id="review-cemetery" class="text-sm leading-relaxed" style="color: var(--on-surface-variant);">—</div>
+            <h3
+              class="text-xs font-bold uppercase tracking-widest mb-4"
+              style="color: var(--primary);"
+            >
+              Site Location
+            </h3>
+            <div
+              id="review-cemetery"
+              class="text-sm leading-relaxed"
+              style="color: var(--on-surface-variant);"
+            >
+              —
+            </div>
           </div>
-          <div style="border-top: 1px solid rgba(179,178,172,0.2); padding-top: 1.5rem;">
-            <h3 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--primary);">Selected Service</h3>
-            <p id="review-service" class="text-sm" style="color: var(--on-surface-variant);">—</p>
+          <div
+            style="border-top: 1px solid rgba(179,178,172,0.2); padding-top: 1.5rem;"
+          >
+            <h3
+              class="text-xs font-bold uppercase tracking-widest mb-4"
+              style="color: var(--primary);"
+            >
+              Selected Service
+            </h3>
+            <p
+              id="review-service"
+              class="text-sm"
+              style="color: var(--on-surface-variant);"
+            >
+              —
+            </p>
           </div>
-          <div style="border-top: 1px solid rgba(179,178,172,0.2); padding-top: 1.5rem;">
-            <h3 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--primary);">Scheduling & Contact</h3>
-            <p id="review-scheduling" class="text-sm leading-relaxed" style="color: var(--on-surface-variant);">—</p>
+          <div
+            style="border-top: 1px solid rgba(179,178,172,0.2); padding-top: 1.5rem;"
+          >
+            <h3
+              class="text-xs font-bold uppercase tracking-widest mb-4"
+              style="color: var(--primary);"
+            >
+              Scheduling & Contact
+            </h3>
+            <p
+              id="review-scheduling"
+              class="text-sm leading-relaxed"
+              style="color: var(--on-surface-variant);"
+            >
+              —
+            </p>
           </div>
         </div>
 
@@ -367,38 +671,76 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
             required
             aria-required="true"
           />
-          <label for="privacy-consent" class="text-sm leading-relaxed" style="color: var(--on-surface-variant);">
-            I agree to the <a href="/privacy" class="underline" style="color: var(--primary);">Privacy Policy</a> and consent to The Quiet Guardian contacting me regarding this professional assessment.
+          <label
+            for="privacy-consent"
+            class="text-sm leading-relaxed"
+            style="color: var(--on-surface-variant);"
+          >
+            I agree to the <a
+              href="/privacy"
+              class="underline"
+              style="color: var(--primary);">Privacy Policy</a
+            > and consent to The Quiet Guardian contacting me regarding this professional
+            assessment.
           </label>
         </div>
 
         <!-- Method Trust Badges -->
-        <div class="reveal flex flex-wrap gap-8 mb-10 pt-8 border-t border-outline-variant/20" data-delay="100">
+        <div
+          class="reveal flex flex-wrap gap-8 mb-10 pt-8 border-t border-outline-variant/20"
+          data-delay="100"
+        >
           <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-lg" style="color: var(--primary);">eco</span>
-            <span class="text-[10px] font-bold uppercase tracking-widest" style="color: var(--on-surface-variant);">pH Neutral</span>
+            <span
+              class="material-symbols-outlined text-lg"
+              style="color: var(--primary);">eco</span
+            >
+            <span
+              class="text-[10px] font-bold uppercase tracking-widest"
+              style="color: var(--on-surface-variant);">pH Neutral</span
+            >
           </div>
           <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-lg" style="color: var(--primary);">sanitizer</span>
-            <span class="text-[10px] font-bold uppercase tracking-widest" style="color: var(--on-surface-variant);">Bio-Safe</span>
+            <span
+              class="material-symbols-outlined text-lg"
+              style="color: var(--primary);">sanitizer</span
+            >
+            <span
+              class="text-[10px] font-bold uppercase tracking-widest"
+              style="color: var(--on-surface-variant);">Bio-Safe</span
+            >
           </div>
           <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-lg" style="color: var(--primary);">pan_tool</span>
-            <span class="text-[10px] font-bold uppercase tracking-widest" style="color: var(--on-surface-variant);">Hand-Scrubbed</span>
+            <span
+              class="material-symbols-outlined text-lg"
+              style="color: var(--primary);">pan_tool</span
+            >
+            <span
+              class="text-[10px] font-bold uppercase tracking-widest"
+              style="color: var(--on-surface-variant);">Hand-Scrubbed</span
+            >
           </div>
         </div>
 
         <div class="mt-6 flex flex-col gap-6">
-          <div 
-            id="form-error" 
-            class="hidden p-4 rounded-lg bg-error/10 text-error text-sm font-medium border border-error/20" 
+          <div
+            id="form-error"
+            class="hidden p-4 rounded-lg bg-error/10 text-error text-sm font-medium border border-error/20"
             role="alert"
           >
           </div>
-          
+
           <div class="flex justify-between">
-            <button type="button" class="btn-back back-btn" data-target="3" aria-label="Back to Scheduling — step 3">
-              <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_back</span>
+            <button
+              type="button"
+              class="btn-back back-btn"
+              data-target="3"
+              aria-label="Back to Scheduling — step 3"
+            >
+              <span
+                class="material-symbols-outlined text-base"
+                aria-hidden="true">arrow_back</span
+              >
               Back
             </button>
             <button
@@ -407,52 +749,102 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
               class="btn-primary"
               aria-label="Submit your assessment request"
             >
-              <span class="material-symbols-outlined text-base" aria-hidden="true">send</span>
+              <span
+                class="material-symbols-outlined text-base"
+                aria-hidden="true">send</span
+              >
               Submit Assessment Request
             </button>
           </div>
         </div>
       </section>
-
     </div>
 
     <!-- ── Philosophy card ───────────────────────────────────── -->
     <div class="max-w-4xl mx-auto px-8 md:px-12 mt-20">
-      <div class="rounded-xl p-8 flex items-start gap-6" style="background: var(--surface-container-low);" role="complementary" aria-label="Our preservation philosophy">
-        <div class="w-12 h-12 shrink-0 rounded-xl flex items-center justify-center" style="background: var(--secondary-container);" aria-hidden="true">
-          <span class="material-symbols-outlined text-base" style="color: var(--on-secondary-container);">spa</span>
+      <div
+        class="rounded-xl p-8 flex items-start gap-6"
+        style="background: var(--surface-container-low);"
+        role="complementary"
+        aria-label="Our preservation philosophy"
+      >
+        <div
+          class="w-12 h-12 shrink-0 rounded-xl flex items-center justify-center"
+          style="background: var(--secondary-container);"
+          aria-hidden="true"
+        >
+          <span
+            class="material-symbols-outlined text-base"
+            style="color: var(--on-secondary-container);">spa</span
+          >
         </div>
         <div>
-          <p class="font-bold text-xs uppercase tracking-widest mb-2" style="color: var(--on-surface);">Preserving the Unspoken</p>
-          <p class="text-sm leading-relaxed" style="color: var(--on-surface-variant);">
-            Every stone tells a story. Our team uses pH-neutral, biological cleaners approved for historic monuments to ensure the integrity of the stone remains untouched for generations.
+          <p
+            class="font-bold text-xs uppercase tracking-widest mb-2"
+            style="color: var(--on-surface);"
+          >
+            Preserving the Unspoken
+          </p>
+          <p
+            class="text-sm leading-relaxed"
+            style="color: var(--on-surface-variant);"
+          >
+            Every stone tells a story. Our team uses pH-neutral, biological
+            cleaners approved for historic monuments to ensure the integrity of
+            the stone remains untouched for generations.
           </p>
         </div>
       </div>
     </div>
-
   </main>
 
   <Footer />
 </Layout>
 
 <style>
-  .step-panel.hidden { display: none; }
-  .step-circle.step-active { background: var(--primary); color: var(--on-primary); box-shadow: 0 0 0 4px var(--primary-container); }
-  .step-circle.step-complete { background: var(--primary-container); color: var(--primary-dim); }
-  .step-circle.step-pending { background: var(--surface-container-high); color: var(--outline); }
-  .step-connector.step-connector-done { background: var(--primary-fixed-dim) !important; }
-  .service-option:has(input:checked) { border: 1.5px solid var(--primary); background: rgba(210,232,217,0.2); }
-  .service-option:has(input:checked) .service-radio { background: var(--primary); border-color: var(--primary); box-shadow: inset 0 0 0 3px var(--on-primary); }
-  .service-option { border: 1.5px solid transparent; }
-  .field-input option { background: var(--surface); }
-  .leaflet-container { font-family: var(--font-body); }
+  .step-panel.hidden {
+    display: none;
+  }
+  .step-circle.step-active {
+    background: var(--primary);
+    color: var(--on-primary);
+    box-shadow: 0 0 0 4px var(--primary-container);
+  }
+  .step-circle.step-complete {
+    background: var(--primary-container);
+    color: var(--primary-dim);
+  }
+  .step-circle.step-pending {
+    background: var(--surface-container-high);
+    color: var(--outline);
+  }
+  .step-connector.step-connector-done {
+    background: var(--primary-fixed-dim) !important;
+  }
+  .service-option:has(input:checked) {
+    border: 1.5px solid var(--primary);
+    background: rgba(210, 232, 217, 0.2);
+  }
+  .service-option:has(input:checked) .service-radio {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: inset 0 0 0 3px var(--on-primary);
+  }
+  .service-option {
+    border: 1.5px solid transparent;
+  }
+  .field-input option {
+    background: var(--surface);
+  }
+  .leaflet-container {
+    font-family: var(--font-body);
+  }
 </style>
 
 <script>
   // @ts-ignore
-  import L from 'leaflet';
-  import 'leaflet/dist/leaflet.css';
+  import L from "leaflet";
+  import "leaflet/dist/leaflet.css";
 
   // Fix icons
   // @ts-ignore
@@ -470,19 +862,22 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
   let marker: any;
 
   function initLeaflet() {
-    const mapContainer = document.getElementById('map');
+    const mapContainer = document.getElementById("map");
     if (!mapContainer) return;
 
-    map = L.map('map').setView([53.3498, -6.2603], 12);
+    map = L.map("map").setView([53.3498, -6.2603], 12);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    map.on('click', (e: any) => {
+    map.on("click", (e: any) => {
       const { lat, lng } = e.latlng;
-      (document.getElementById('latitude') as HTMLInputElement).value = lat.toFixed(6);
-      (document.getElementById('longitude') as HTMLInputElement).value = lng.toFixed(6);
+      (document.getElementById("latitude") as HTMLInputElement).value =
+        lat.toFixed(6);
+      (document.getElementById("longitude") as HTMLInputElement).value =
+        lng.toFixed(6);
       if (marker) {
         marker.setLatLng(e.latlng);
       } else {
@@ -491,13 +886,15 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
     });
 
     setTimeout(() => {
-        map.invalidateSize();
+      map.invalidateSize();
     }, 400);
 
     // Set min date for scheduling (client-side)
-    const dateInput = document.getElementById('preferred-date') as HTMLInputElement;
+    const dateInput = document.getElementById(
+      "preferred-date",
+    ) as HTMLInputElement;
     if (dateInput) {
-      dateInput.min = new Date().toISOString().split('T')[0];
+      dateInput.min = new Date().toISOString().split("T")[0];
     }
   }
 
@@ -506,10 +903,12 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
   function validateStep(n: number): boolean {
     const panel = document.getElementById(`step-${n}`);
     if (!panel) return true;
-    const requiredFields = panel.querySelectorAll('[required]') as NodeListOf<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>;
+    const requiredFields = panel.querySelectorAll("[required]") as NodeListOf<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >;
     let isValid = true;
-    
-    requiredFields.forEach(field => {
+
+    requiredFields.forEach((field) => {
       if (!field.checkValidity()) {
         field.reportValidity();
         isValid = false;
@@ -517,109 +916,148 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
     });
 
     if (n === 2) {
-      const serviceChecked = document.querySelector('input[name="service"]:checked');
-      const errorEl = document.getElementById('service-error');
+      const serviceChecked = document.querySelector(
+        'input[name="service"]:checked',
+      );
+      const errorEl = document.getElementById("service-error");
       if (!serviceChecked) {
-        errorEl?.classList.remove('hidden');
+        errorEl?.classList.remove("hidden");
         isValid = false;
       } else {
-        errorEl?.classList.add('hidden');
+        errorEl?.classList.add("hidden");
       }
     }
     return isValid;
   }
 
   function goToStep(n: number) {
-    document.querySelectorAll('.step-panel').forEach(p => p.classList.add('hidden'));
+    document
+      .querySelectorAll(".step-panel")
+      .forEach((p) => p.classList.add("hidden"));
     const target = document.getElementById(`step-${n}`);
     if (target) {
-      target.classList.remove('hidden');
+      target.classList.remove("hidden");
     }
-    document.querySelectorAll('.step-item').forEach((item, i) => {
-      const stepN   = i + 1;
-      const circle  = item.querySelector('.step-circle');
-      const label   = item.querySelector('p');
-      const conn    = item.querySelector('.step-connector') as HTMLElement | null;
+    document.querySelectorAll(".step-item").forEach((item, i) => {
+      const stepN = i + 1;
+      const circle = item.querySelector(".step-circle");
+      const label = item.querySelector("p");
+      const conn = item.querySelector(".step-connector") as HTMLElement | null;
       if (!circle) return;
-      circle.classList.remove('step-active', 'step-complete', 'step-pending');
-      circle.removeAttribute('aria-current');
-      label?.classList.remove('opacity-50');
+      circle.classList.remove("step-active", "step-complete", "step-pending");
+      circle.removeAttribute("aria-current");
+      label?.classList.remove("opacity-50");
       if (stepN < n) {
-        circle.classList.add('step-complete');
-        circle.innerHTML = '<span class="material-symbols-outlined text-sm">check</span>';
-        if (conn) conn.classList.add('step-connector-done');
+        circle.classList.add("step-complete");
+        circle.innerHTML =
+          '<span class="material-symbols-outlined text-sm">check</span>';
+        if (conn) conn.classList.add("step-connector-done");
       } else if (stepN === n) {
-        circle.classList.add('step-active');
+        circle.classList.add("step-active");
         circle.innerHTML = String(stepN);
-        circle.setAttribute('aria-current', 'step');
-        if (conn) conn.classList.add('step-connector-done');
+        circle.setAttribute("aria-current", "step");
+        if (conn) conn.classList.add("step-connector-done");
       } else {
-        circle.classList.add('step-pending');
+        circle.classList.add("step-pending");
         circle.innerHTML = String(stepN);
-        label?.classList.add('opacity-50');
+        label?.classList.add("opacity-50");
       }
     });
     currentStep = n;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
     if (n === 1 && map) {
-        setTimeout(() => map.invalidateSize(), 100);
+      setTimeout(() => map.invalidateSize(), 100);
     }
   }
 
   function collectStep1() {
-    formData.cemetery = (document.getElementById('cemetery') as HTMLInputElement)?.value;
-    formData.section  = (document.getElementById('section') as HTMLInputElement)?.value;
-    formData.grave    = (document.getElementById('grave') as HTMLInputElement)?.value;
-    formData.website  = (document.getElementById('website') as HTMLInputElement)?.value;
-    formData.unsureLocation = (document.getElementById('unsure-location') as HTMLInputElement)?.checked;
-    formData.name     = (document.getElementById('name-on-stone') as HTMLInputElement)?.value;
-    formData.lat      = (document.getElementById('latitude') as HTMLInputElement)?.value;
-    formData.lng      = (document.getElementById('longitude') as HTMLInputElement)?.value;
-    formData.notes    = (document.getElementById('additional-notes') as HTMLTextAreaElement)?.value;
+    formData.cemetery = (
+      document.getElementById("cemetery") as HTMLInputElement
+    )?.value;
+    formData.section = (
+      document.getElementById("section") as HTMLInputElement
+    )?.value;
+    formData.grave = (
+      document.getElementById("grave") as HTMLInputElement
+    )?.value;
+    formData.website = (
+      document.getElementById("website") as HTMLInputElement
+    )?.value;
+    formData.unsureLocation = (
+      document.getElementById("unsure-location") as HTMLInputElement
+    )?.checked;
+    formData.name = (
+      document.getElementById("name-on-stone") as HTMLInputElement
+    )?.value;
+    formData.lat = (
+      document.getElementById("latitude") as HTMLInputElement
+    )?.value;
+    formData.lng = (
+      document.getElementById("longitude") as HTMLInputElement
+    )?.value;
+    formData.notes = (
+      document.getElementById("additional-notes") as HTMLTextAreaElement
+    )?.value;
   }
   function collectStep2() {
-    const checked = document.querySelector('input[name="service"]:checked') as HTMLInputElement | null;
-    formData.service = checked?.value ?? '';
+    const checked = document.querySelector(
+      'input[name="service"]:checked',
+    ) as HTMLInputElement | null;
+    formData.service = checked?.value ?? "";
   }
   function collectStep3() {
-    formData.date         = (document.getElementById('preferred-date') as HTMLInputElement)?.value;
-    formData.time         = (document.getElementById('preferred-time') as HTMLSelectElement)?.value;
-    formData.contactName  = (document.getElementById('contact-name') as HTMLInputElement)?.value;
-    formData.email        = (document.getElementById('contact-email') as HTMLInputElement)?.value;
-    formData.phone        = (document.getElementById('contact-phone') as HTMLInputElement)?.value;
-    formData.permission   = (document.getElementById('legal-permission') as HTMLInputElement)?.checked;
-    formData.access       = (document.getElementById('access-info') as HTMLSelectElement)?.value;
+    formData.date = (
+      document.getElementById("preferred-date") as HTMLInputElement
+    )?.value;
+    formData.time = (
+      document.getElementById("preferred-time") as HTMLSelectElement
+    )?.value;
+    formData.contactName = (
+      document.getElementById("contact-name") as HTMLInputElement
+    )?.value;
+    formData.email = (
+      document.getElementById("contact-email") as HTMLInputElement
+    )?.value;
+    formData.phone = (
+      document.getElementById("contact-phone") as HTMLInputElement
+    )?.value;
+    formData.permission = (
+      document.getElementById("legal-permission") as HTMLInputElement
+    )?.checked;
+    formData.access = (
+      document.getElementById("access-info") as HTMLSelectElement
+    )?.value;
   }
   function populateReview() {
     const el = (id: string) => document.getElementById(id);
-    const cemReview = el('review-cemetery');
+    const cemReview = el("review-cemetery");
     if (cemReview) {
       cemReview.textContent = ""; // Clear existing
 
-      const cemRow = document.createElement('div');
-      const cemLabel = document.createElement('strong');
+      const cemRow = document.createElement("div");
+      const cemLabel = document.createElement("strong");
       cemLabel.textContent = "Cemetery: ";
       cemRow.appendChild(cemLabel);
       cemRow.appendChild(document.createTextNode(formData.cemetery || "—"));
       cemReview.appendChild(cemRow);
 
-      const nameRow = document.createElement('div');
-      const nameLabel = document.createElement('strong');
+      const nameRow = document.createElement("div");
+      const nameLabel = document.createElement("strong");
       nameLabel.textContent = "Name: ";
       nameRow.appendChild(nameLabel);
       nameRow.appendChild(document.createTextNode(formData.name || "—"));
       cemReview.appendChild(nameRow);
 
       if (formData.unsureLocation) {
-        const assistMsg = document.createElement('div');
+        const assistMsg = document.createElement("div");
         assistMsg.className = "text-xs text-error font-bold mt-1";
         assistMsg.textContent = "Assist in locating requested.";
         cemReview.appendChild(assistMsg);
       }
-      
+
       if (formData.lat && formData.lng) {
-        const coords = document.createElement('div');
+        const coords = document.createElement("div");
         coords.className = "text-xs text-primary mt-1";
         coords.textContent = `Pinned: ${Number(formData.lat).toFixed(4)}, ${Number(formData.lng).toFixed(4)}`;
         cemReview.appendChild(coords);
@@ -627,41 +1065,66 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
     }
 
     const serviceLabels: Record<string, string> = {
-      basic: 'Basic Care',
-      restorative: 'Restorative Care',
-      legacy: 'Peace of Mind Plan',
+      basic: "Basic Care",
+      restorative: "Restorative Care",
+      legacy: "Peace of Mind Plan",
     };
-    el('review-service')!.textContent = serviceLabels[formData.service] ?? '—';
-    el('review-scheduling')!.textContent = `Contact: ${formData.contactName || '—'} (${formData.email || '—'} / ${formData.phone || '—'}) | Access: ${formData.access || '—'}`;
+    el("review-service")!.textContent = serviceLabels[formData.service] ?? "—";
+    el("review-scheduling")!.textContent =
+      `Contact: ${formData.contactName || "—"} (${formData.email || "—"} / ${formData.phone || "—"}) | Access: ${formData.access || "—"}`;
   }
 
   // Step buttons
-  document.getElementById('to-step-2')?.addEventListener('click', () => { if (validateStep(1)) { collectStep1(); goToStep(2); } });
-  document.getElementById('to-step-3')?.addEventListener('click', () => { if (validateStep(2)) { collectStep2(); goToStep(3); } });
-  document.getElementById('to-step-4')?.addEventListener('click', () => { if (validateStep(3)) { collectStep3(); populateReview(); goToStep(4); } });
-  document.querySelectorAll('.back-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = parseInt((btn as HTMLElement).dataset.target ?? '1');
+  document.getElementById("to-step-2")?.addEventListener("click", () => {
+    if (validateStep(1)) {
+      collectStep1();
+      goToStep(2);
+    }
+  });
+  document.getElementById("to-step-3")?.addEventListener("click", () => {
+    if (validateStep(2)) {
+      collectStep2();
+      goToStep(3);
+    }
+  });
+  document.getElementById("to-step-4")?.addEventListener("click", () => {
+    if (validateStep(3)) {
+      collectStep3();
+      populateReview();
+      goToStep(4);
+    }
+  });
+  document.querySelectorAll(".back-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = parseInt((btn as HTMLElement).dataset.target ?? "1");
       goToStep(target);
     });
   });
 
   // Submit to Formspree
-  document.getElementById('submit-btn')?.addEventListener('click', async () => {
+  document.getElementById("submit-btn")?.addEventListener("click", async () => {
     if (submitted) return;
-    const consent = document.getElementById('privacy-consent') as HTMLInputElement;
-    if (!consent?.checked) { consent.focus(); return; }
+    const consent = document.getElementById(
+      "privacy-consent",
+    ) as HTMLInputElement;
+    if (!consent?.checked) {
+      consent.focus();
+      return;
+    }
 
-    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const submitBtn = document.getElementById(
+      "submit-btn",
+    ) as HTMLButtonElement;
     const originalBtnText = submitBtn.innerHTML;
-    const mainContainer = document.getElementById('main-content');
+    const mainContainer = document.getElementById("main-content");
     const endpoint = mainContainer?.dataset.endpoint;
-    const errorBanner = document.getElementById('form-error');
+    const errorBanner = document.getElementById("form-error");
 
     if (!endpoint) {
       if (errorBanner) {
-        errorBanner.textContent = "Configuration error: form endpoint not set. Please contact us via WhatsApp.";
-        errorBanner.classList.remove('hidden');
+        errorBanner.textContent =
+          "Configuration error: form endpoint not set. Please contact us via WhatsApp.";
+        errorBanner.classList.remove("hidden");
       }
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalBtnText;
@@ -669,21 +1132,21 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
     }
 
     // Reset UI
-    errorBanner?.classList.add('hidden');
+    errorBanner?.classList.add("hidden");
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting Assessment Request...';
+    submitBtn.textContent = "Submitting Assessment Request...";
 
     // Ensure all current step data is collected
-    collectStep3(); 
+    collectStep3();
 
     try {
       const response = await fetch(endpoint, {
         method: "POST",
         headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
@@ -692,8 +1155,10 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
       } else {
         const data = await response.json();
         if (errorBanner) {
-          errorBanner.textContent = data.error || "Submission failed. Please check the form and try again.";
-          errorBanner.classList.remove('hidden');
+          errorBanner.textContent =
+            data.error ||
+            "Submission failed. Please check the form and try again.";
+          errorBanner.classList.remove("hidden");
         }
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnText;
@@ -701,8 +1166,9 @@ const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "https://
     } catch (err) {
       console.error("Submission error:", err);
       if (errorBanner) {
-        errorBanner.textContent = "Communication error: Our secure servers are unreachable from this browser. Please try using a different connection or contact us via WhatsApp directly.";
-        errorBanner.classList.remove('hidden');
+        errorBanner.textContent =
+          "Communication error: Our secure servers are unreachable from this browser. Please try using a different connection or contact us via WhatsApp directly.";
+        errorBanner.classList.remove("hidden");
       }
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalBtnText;
