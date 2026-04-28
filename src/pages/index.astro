@@ -4,8 +4,8 @@ import assessmentImage from "../assets/assessment_image.png";
 import careImage from "../assets/care_image.png";
 import heroImage from "../assets/legacy_wide_shot.png";
 import preservationImage from "../assets/preservation_image.png";
-import revealLeftImage from "../assets/reveal_left_image.png";
-import revealRightImage from "../assets/reveal_right_image.png";
+import beforeImage from "../assets/before_picture.jpg";
+import afterImage from "../assets/after_picture.jpg";
 import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
 import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
@@ -175,7 +175,7 @@ import Layout from "../layouts/Layout.astro";
             class="text-3xl font-serif italic"
             style="color: var(--on-surface);"
           >
-            Starting from €45
+            Starting from €60
           </p>
         </div>
       </div>
@@ -326,8 +326,8 @@ import Layout from "../layouts/Layout.astro";
         <div class="reveal" data-delay="120">
           <BeforeAfterSlider
             id="reveal-slider"
-            beforeSrc={revealLeftImage}
-            afterSrc={revealRightImage}
+            beforeSrc={beforeImage}
+            afterSrc={afterImage}
             beforeAlt="Weathered headstone — before preservation"
             afterAlt="Restored headstone — after preservation"
             beforeLabel="Original"

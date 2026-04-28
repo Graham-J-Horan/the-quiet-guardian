@@ -1,6 +1,6 @@
 ---
 import { CONTACT_INFO } from "../config";
-const { whatsappNumber, phoneNumber } = CONTACT_INFO;
+const { whatsappNumber, phoneNumber, email } = CONTACT_INFO;
 ---
 <footer style="background: var(--surface-container-low); border-top: 1px solid rgba(179,178,172,0.15);" role="contentinfo">
   <div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 md:px-12 py-20 max-w-screen-2xl mx-auto">
@@ -47,9 +47,9 @@ const { whatsappNumber, phoneNumber } = CONTACT_INFO;
           <span class="material-symbols-outlined text-base">call</span>
           {phoneNumber}
         </a>
-        <a href="mailto:care@quietguardian.com" class="flex items-center gap-2 text-sm font-semibold" style="color: var(--primary);">
+        <a href={`mailto:${email}`} class="flex items-center gap-2 text-sm font-semibold" style="color: var(--primary);">
           <span class="material-symbols-outlined text-base">mail</span>
-          care@quietguardian.com
+          {email}
         </a>
       </div>
     </div>

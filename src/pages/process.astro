@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import marbleAfter from "../assets/marble_after_image.png";
-import marbleBefore from "../assets/marble_before_image.png";
+import ourServicesAfter from "../assets/our_services_after.jpg";
+import ourServicesBefore from "../assets/our_services_before.jpg";
 import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
 import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
@@ -9,50 +9,54 @@ import Layout from "../layouts/Layout.astro";
 
 const plans = [
   {
-    id: "basic",
-    name: "Basic Care",
-    price: "45",
+    id: "bronze",
+    name: "Bronze: The Seasonal Refresh",
+    price: "60",
     unit: "/service",
-    description: "Gentle maintenance to restore surfaces.",
+    description:
+      'Best for graves that are visited regularly but need a professional "edge."',
     features: [
-      "Soft dry-removal of debris and surface dirt",
-      "pH-neutral cleaning solution application",
-      "Surrounding ground maintenance",
-      'High-resolution "before & after" photo report',
+      "Manual Weeding: Full removal of weeds from the plot and decorative stones",
+      "Precision Edging: Hand-trimming grass borders for a sharp, clean look",
+      "Surface Wash: Gentle rinse to remove dust and bird droppings",
+      "Site Tidy: Removal of old flowers, withered wreaths, and debris",
+      'Digital Proof: "After" photo sent directly to your phone',
     ],
-    cta: "Select Basic",
+    cta: "Select Bronze",
     featured: false,
   },
   {
-    id: "restorative",
-    name: "Restorative Care",
-    price: "75",
+    id: "silver",
+    name: "Silver: The Deep Restoration",
+    price: "100",
     unit: "/service",
-    description: "Our most comprehensive single-service treatment.",
+    description:
+      'Our signature service. Best for stones with algae, moss, or "green" staining.',
     features: [
-      "Everything in Basic Care",
-      "Deep biological cleaning (lichen & moss removal)",
-      "Careful polishing of porous or granular surfaces",
-      "Enzyme treatment for future growth prevention",
-      "In-depth masonry condition assessment",
+      "Everything in Bronze PLUS:",
+      "Biological Soft-Wash: Professional application of eco-friendly, stone-safe cleaners",
+      "Full Scrub: Deep cleaning of the headstone, base, and surrounding curbs",
+      "Lettering Detail: Intricate cleaning of all engraved names and dates",
+      'The Comparison: High-quality "Before & After" photos provided',
     ],
-    cta: "Choose Restorative",
+    cta: "Choose Silver",
     featured: true,
     badge: "Recommended",
   },
   {
-    id: "legacy",
-    name: "Peace of Mind Plan",
-    price: "125",
+    id: "gold",
+    name: "Gold: The Annual Care",
+    price: "250",
     unit: "/annual",
-    description: "Ongoing annual stewardship. Never let them be forgotten again.",
+    description:
+      "Complete peace of mind. Your loved one's resting place tended to all year round.",
     features: [
-      "Quarterly maintenance visits",
-      "Premium floral placement",
-      "Headstone sealing & protective waxing",
-      "Anniversary or holiday visit scheduling",
+      "4 Scheduled Visits: One Silver Deep Clean followed by three Bronze Maintenance visits",
+      "Tribute Service: Fresh flowers or a seasonal wreath placed on two dates of your choice (e.g., Anniversary/Christmas)",
+      "Chipping Top-Up: One bag of fresh marble or slate chippings included",
+      "Priority Updates: Photo reports sent to you after every visit",
     ],
-    cta: "Inquire for Stewardship",
+    cta: "Select Gold",
     featured: false,
   },
 ];
@@ -66,7 +70,10 @@ const plans = [
 
   <main id="main-content">
     <!-- ── Hero ───────────────────────────────────────────────── -->
-    <section class="max-w-screen-2xl mx-auto px-8 md:px-12 pt-40 pb-16" aria-labelledby="process-hero-title">
+    <section
+      class="max-w-screen-2xl mx-auto px-8 md:px-12 pt-40 pb-16"
+      aria-labelledby="process-hero-title"
+    >
       <p
         class="reveal text-xs font-bold uppercase tracking-widest mb-5"
         style="color: var(--primary);"
@@ -90,8 +97,9 @@ const plans = [
         style="color: var(--on-surface-variant);"
         data-delay="160"
       >
-        We provide gentle, specialised care across Leinster to ensure that your family's history
-        remains clear and respected through the passing seasons.
+        We provide gentle, specialised care across Leinster to ensure that your
+        family's history remains clear and respected through the passing
+        seasons.
       </p>
     </section>
 
@@ -203,8 +211,9 @@ const plans = [
             data-delay="80"
           >
             Observe the transformation of a century-old marble marker after our
-            Restorative Care service. We use only biological, safe solutions
-            that preserve the integrity of the stone for generations to come.
+            Silver Deep Restoration service. We use only biological, safe
+            solutions that preserve the integrity of the stone for generations
+            to come.
           </p>
           <div class="reveal space-y-4" data-delay="140">
             {
@@ -234,10 +243,10 @@ const plans = [
         <div class="reveal" data-delay="100">
           <BeforeAfterSlider
             id="services-slider"
-            beforeSrc={marbleBefore}
-            afterSrc={marbleAfter}
-            beforeAlt="Headstone before restorative care — covered in lichen"
-            afterAlt="Headstone after restorative care — clean and bright"
+            beforeSrc={ourServicesBefore}
+            afterSrc={ourServicesAfter}
+            beforeAlt="Headstone before Silver Deep Restoration — covered in lichen"
+            afterAlt="Headstone after Silver Deep Restoration — clean and bright"
             aspectRatio="4/3"
           />
         </div>

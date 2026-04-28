@@ -250,22 +250,22 @@ const formspreeEndpoint =
           {
             [
               {
-                id: "basic",
-                label: "Basic Care",
-                price: "€45",
+                id: "bronze",
+                label: "Bronze: The Seasonal Refresh",
+                price: "€60",
                 desc: "Gentle surface cleaning and maintenance — ideal for well-preserved memorials.",
               },
               {
-                id: "restorative",
-                label: "Restorative Care",
-                price: "€75",
+                id: "silver",
+                label: "Silver: The Deep Restoration",
+                price: "€100",
                 desc: "Our most comprehensive single-service treatment, including biological cleaning and condition assessment.",
               },
               {
-                id: "legacy",
-                label: "Peace of Mind Plan",
-                price: "€125/yr",
-                desc: "Ongoing annual stewardship. Never let them be forgotten again.",
+                id: "gold",
+                label: "Gold: The Annual Care",
+                price: "€250/yr",
+                desc: "Ongoing annual stewardship. Your loved one's resting place tended to all year round.",
               },
             ].map(({ id, label, price, desc }) => (
               <label
@@ -1065,9 +1065,9 @@ const formspreeEndpoint =
     }
 
     const serviceLabels: Record<string, string> = {
-      basic: "Basic Care",
-      restorative: "Restorative Care",
-      legacy: "Peace of Mind Plan",
+      bronze: "Bronze: The Seasonal Refresh",
+      silver: "Silver: The Deep Restoration",
+      gold: "Gold: The Annual Care",
     };
     el("review-service")!.textContent = serviceLabels[formData.service] ?? "—";
     el("review-scheduling")!.textContent =

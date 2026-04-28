@@ -39,9 +39,9 @@ import { CONTACT_INFO } from "../config";
             {CONTACT_INFO.businessAddress}, Ireland<br />
             <strong>Contact:</strong>
             <a
-              href="mailto:care@quietguardian.com"
+              href={`mailto:${CONTACT_INFO.email}`}
               style="color: var(--primary); text-decoration: underline;"
-              >care@quietguardian.com</a
+              >{CONTACT_INFO.email}</a
             >
           </p>
         </section>
@@ -196,9 +196,9 @@ import { CONTACT_INFO } from "../config";
           <p class="text-sm italic">
             Last Updated: April 2026<br />
             For any privacy-related inquiries, please contact <a
-              href="mailto:care@quietguardian.com"
+              href={`mailto:${CONTACT_INFO.email}`}
               style="color: var(--primary); text-decoration: underline;"
-              >care@quietguardian.com</a
+              >{CONTACT_INFO.email}</a
             >
           </p>
         </section>

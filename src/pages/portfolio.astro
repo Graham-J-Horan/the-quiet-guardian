@@ -2,8 +2,8 @@
 import { Image } from "astro:assets";
 import granitePortfolio from "../assets/granite_image_portfolio.png";
 import limestonePortfolio from "../assets/limestone_portfolio_image.png";
-import marbleAfter from "../assets/marble_after_image.png";
-import marbleBefore from "../assets/marble_before_image.png";
+import ourServicesAfter from "../assets/our_services_after.jpg";
+import ourServicesBefore from "../assets/our_services_before.jpg";
 import marblePortfolio from "../assets/marble_image_portfolio.png";
 import peacefulCemetery from "../assets/peaceful_cemetery.png";
 import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
@@ -72,7 +72,10 @@ const cases = [
 
   <main id="main-content">
     <!-- ── Hero ───────────────────────────────────────────────── -->
-    <section class="max-w-screen-2xl mx-auto px-8 md:px-12 pt-40 pb-20" aria-labelledby="portfolio-hero-title">
+    <section
+      class="max-w-screen-2xl mx-auto px-8 md:px-12 pt-40 pb-20"
+      aria-labelledby="portfolio-hero-title"
+    >
       <div class="max-w-3xl">
         <p
           class="reveal text-xs font-bold uppercase tracking-widest mb-6"
@@ -92,8 +95,14 @@ const cases = [
             >Digital Preservation</em
           >
         </h1>
-        <p class="reveal text-lg leading-relaxed max-w-xl" style="color: var(--on-surface-variant);" data-delay="160">
-          Every stone tells a story. Our gallery showcases restorations across Leinster, highlighting the specialised techniques used to honour the memories etched in stone.
+        <p
+          class="reveal text-lg leading-relaxed max-w-xl"
+          style="color: var(--on-surface-variant);"
+          data-delay="160"
+        >
+          Every stone tells a story. Our gallery showcases restorations across
+          Leinster, highlighting the specialised techniques used to honour the
+          memories etched in stone.
         </p>
       </div>
     </section>
@@ -376,8 +385,8 @@ const cases = [
           <div class="reveal relative" data-delay="100">
             <BeforeAfterSlider
               id="portfolio-slider"
-              beforeSrc={marbleBefore}
-              afterSrc={marbleAfter}
+              beforeSrc={ourServicesBefore}
+              afterSrc={ourServicesAfter}
               beforeAlt="Severely weathered and lichen-covered marble headstone before restoration"
               afterAlt="Pristine white marble headstone with clear sharp lettering after restoration"
               beforeLabel="Historical State"
@@ -412,7 +421,10 @@ const cases = [
             just clean a stone; they restored a connection."
           </p>
         </blockquote>
-        <figcaption class="reveal flex items-center justify-center gap-4" data-delay="120">
+        <figcaption
+          class="reveal flex items-center justify-center gap-4"
+          data-delay="120"
+        >
           <div
             class="w-12 h-12 rounded-full flex items-center justify-center font-serif text-sm font-bold shadow-sm"
             style="background: var(--primary-container); color: var(--on-primary-container);"
@@ -529,5 +541,4 @@ const cases = [
   if (initialFilter) {
     applyFilter(initialFilter, false);
   }
-
 </script>
